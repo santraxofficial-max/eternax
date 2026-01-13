@@ -10,13 +10,13 @@
 
 @layer base {
   :root {
-    /* Core Palette - Midnight Black dominant */
-    --background: 0 0% 4%;
+    /* Core Palette - Pitch Black dominant */
+    --background: 0 0% 0%;
     --foreground: 30 5% 92%;
 
-    /* Midnight Black - Primary surface */
-    --midnight: 0 0% 4%;
-    --midnight-light: 0 0% 8%;
+    /* Midnight Black - Primary surface (pitch black) */
+    --midnight: 0 0% 0%;
+    --midnight-light: 0 0% 6%;
     --midnight-lighter: 0 0% 12%;
 
     /* Concrete White - Text & contrast */
@@ -35,9 +35,9 @@
     --copper-glow: 24 80% 55%;
 
     /* Semantic tokens */
-    --card: 0 0% 6%;
+    --card: 0 0% 4%;
     --card-foreground: 30 5% 92%;
-    --card-hover: 0 0% 10%;
+    --card-hover: 0 0% 8%;
 
     --popover: 0 0% 6%;
     --popover-foreground: 30 5% 92%;
@@ -89,7 +89,7 @@
 
   /* No dark mode toggle - site is dark by design */
   .dark {
-    --background: 0 0% 4%;
+    --background: 0 0% 0%;
     --foreground: 30 5% 92%;
   }
 }

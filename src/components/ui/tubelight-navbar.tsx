@@ -1,0 +1,163 @@
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
+import { LucideIcon, Home, Info, Package, Leaf, Rocket } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+interface NavItem {
+  name: string;
+  url: string;
+  icon: LucideIcon;
+}
+
+interface NavBarProps {
+  items: NavItem[];
+  className?: string;
+}
+
+export function NavBar({ items, className }: NavBarProps) {
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState(items[0].name);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  // Update active tab based on current route
+  useEffect(() => {
+    const currentItem = items.find((item) => item.url === location.pathname);
+    if (currentItem) {
+      setActiveTab(currentItem.name);
+    }
+  }, [location.pathname, items]);
+
+  // Handle scroll visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY < 50) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY.current) {
+        // Scrolling down
+        setIsVisible(false);
+      } else {
+        // Scrolling up
+        setIsVisible(true);
+      }
+      
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Handle resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return (
+    <motion.div
+      initial={{ y: 0, opacity: 1 }}
+      animate={{ 
+        y: isVisible ? 0 : -100, 
+        opacity: isVisible ? 1 : 0 
+      }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 flex justify-center pt-6",
+        className
+      )}
+    >
+      <div className="flex items-center gap-3 bg-midnight-light/90 backdrop-blur-xl border border-ash-dark/30 py-2 px-2 rounded-full shadow-lg">
+        {/* Logo */}
+        <Link to="/" className="px-4">
+          <motion.span
+            className="text-lg font-bold tracking-tight text-concrete"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
+          >
+            ETERNA
+          </motion.span>
+        </Link>
+
+        {/* Divider */}
+        <div className="w-px h-6 bg-ash-dark/50" />
+
+        {/* Navigation Items */}
+        <div className="flex items-center gap-1">
+          {items.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeTab === item.name;
+
+            return (
+              <Link
+                key={item.name}
+                to={item.url}
+                onClick={() => setActiveTab(item.name)}
+                className={cn(
+                  "relative cursor-pointer text-sm font-medium px-4 py-2 rounded-full transition-all duration-300",
+                  "text-concrete-muted hover:text-concrete",
+                  isActive && "text-midnight"
+                )}
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  {isMobile ? (
+                    <Icon size={18} strokeWidth={2.5} />
+                  ) : (
+                    item.name
+                  )}
+                </span>
+                {isActive && (
+                  <motion.div
+                    layoutId="tubelight"
+                    className="absolute inset-0 bg-copper rounded-full"
+                    initial={false}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30,
+                    }}
+                  >
+                    {/* Tubelight glow effect */}
+                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-copper-glow rounded-full blur-md" />
+                    <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-12 h-1 bg-copper-light/50 rounded-full blur-sm" />
+                  </motion.div>
+                )}
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* Divider */}
+        <div className="hidden md:block w-px h-6 bg-ash-dark/50" />
+
+        {/* CTA Button */}
+        <Link
+          to="/start-project"
+          className="hidden md:flex items-center gap-2 bg-copper hover:bg-copper-light text-midnight font-semibold px-5 py-2 rounded-full transition-all duration-300 hover:shadow-[0_0_20px_hsl(24,70%,50%,0.4)]"
+        >
+          <Rocket size={16} />
+          <span>Start Project</span>
+        </Link>
+      </div>
+    </motion.div>
+  );
+}
+
+// Default navigation items for Eterna
+export const eternaNavItems: NavItem[] = [
+  { name: "Home", url: "/", icon: Home },
+  { name: "About", url: "/about", icon: Info },
+  { name: "What We Build", url: "/what-we-build", icon: Package },
+  { name: "Materials", url: "/materials", icon: Leaf },
+];
