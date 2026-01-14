@@ -7,7 +7,7 @@ export const WhyEternaSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-24 md:py-32 bg-midnight-light relative overflow-hidden">
+    <section ref={ref} className="py-24 md:py-32 bg-background relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
