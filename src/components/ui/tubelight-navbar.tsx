@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { LucideIcon, Home, Info, Package, Leaf, Rocket } from "lucide-react";
+import { LucideIcon, Home, Info, Package, Leaf } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface NavItem {
@@ -78,77 +78,49 @@ export function NavBar({ items, className }: NavBarProps) {
         className
       )}
     >
-      <div className="flex items-center gap-3 bg-midnight-light/90 backdrop-blur-xl border border-ash-dark/30 py-2 px-2 rounded-full shadow-lg">
-        {/* Logo */}
-        <Link to="/" className="px-4">
-          <motion.span
-            className="text-lg font-bold tracking-tight text-concrete"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.2 }}
-          >
-            ETERNA
-          </motion.span>
-        </Link>
+      <div className="flex items-center gap-1 bg-midnight-light/80 backdrop-blur-xl border border-ash-dark/20 py-1.5 px-1.5 rounded-full shadow-lg">
+        {/* Navigation Items Only */}
+        {items.map((item) => {
+          const Icon = item.icon;
+          const isActive = activeTab === item.name;
 
-        {/* Divider */}
-        <div className="w-px h-6 bg-ash-dark/50" />
-
-        {/* Navigation Items */}
-        <div className="flex items-center gap-1">
-          {items.map((item) => {
-            const Icon = item.icon;
-            const isActive = activeTab === item.name;
-
-            return (
-              <Link
-                key={item.name}
-                to={item.url}
-                onClick={() => setActiveTab(item.name)}
-                className={cn(
-                  "relative cursor-pointer text-sm font-medium px-4 py-2 rounded-full transition-all duration-300",
-                  "text-concrete-muted hover:text-concrete",
-                  isActive && "text-midnight"
+          return (
+            <Link
+              key={item.name}
+              to={item.url}
+              onClick={() => setActiveTab(item.name)}
+              className={cn(
+                "relative cursor-pointer text-sm font-medium px-5 py-2.5 rounded-full transition-all duration-300",
+                "text-concrete-muted hover:text-concrete",
+                isActive && "text-midnight"
+              )}
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                {isMobile ? (
+                  <Icon size={18} strokeWidth={2.5} />
+                ) : (
+                  item.name
                 )}
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  {isMobile ? (
-                    <Icon size={18} strokeWidth={2.5} />
-                  ) : (
-                    item.name
-                  )}
-                </span>
-                {isActive && (
-                  <motion.div
-                    layoutId="tubelight"
-                    className="absolute inset-0 bg-copper rounded-full"
-                    initial={false}
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 30,
-                    }}
-                  >
-                    {/* Tubelight glow effect */}
-                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-copper-glow rounded-full blur-md" />
-                    <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-12 h-1 bg-copper-light/50 rounded-full blur-sm" />
-                  </motion.div>
-                )}
-              </Link>
-            );
-          })}
-        </div>
-
-        {/* Divider */}
-        <div className="hidden md:block w-px h-6 bg-ash-dark/50" />
-
-        {/* CTA Button */}
-        <Link
-          to="/start-project"
-          className="hidden md:flex items-center gap-2 bg-copper hover:bg-copper-light text-midnight font-semibold px-5 py-2 rounded-full transition-all duration-300 hover:shadow-[0_0_20px_hsl(24,70%,50%,0.4)]"
-        >
-          <Rocket size={16} />
-          <span>Start Project</span>
-        </Link>
+              </span>
+              {isActive && (
+                <motion.div
+                  layoutId="tubelight"
+                  className="absolute inset-0 bg-copper rounded-full"
+                  initial={false}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 30,
+                  }}
+                >
+                  {/* Tubelight glow effect */}
+                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-copper-glow rounded-full blur-md" />
+                  <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-12 h-1 bg-copper-light/50 rounded-full blur-sm" />
+                </motion.div>
+              )}
+            </Link>
+          );
+        })}
       </div>
     </motion.div>
   );
