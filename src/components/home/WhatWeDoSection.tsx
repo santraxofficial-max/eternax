@@ -61,9 +61,9 @@ export const WhatWeDoSection = () => {
               className="group relative"
             >
               <div className="card-premium p-8 h-full transition-all duration-500 hover:border-copper/30">
-                {/* Icon */}
-                <div className="w-14 h-14 rounded-xl bg-gradient-copper flex items-center justify-center mb-6 shadow-copper group-hover:shadow-glow transition-shadow duration-500">
-                  <feature.icon size={24} className="text-midnight" />
+                {/* Icon - Copper border, dark inside */}
+                <div className="w-14 h-14 rounded-xl bg-midnight-light border border-copper/50 flex items-center justify-center mb-6 group-hover:border-copper transition-colors duration-500">
+                  <feature.icon size={24} className="text-copper" />
                 </div>
 
                 {/* Content */}
