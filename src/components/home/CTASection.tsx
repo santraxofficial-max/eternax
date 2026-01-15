@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { Button } from "@/components/ui/button";
 
 export const CTASection = () => {
@@ -44,16 +45,18 @@ export const CTASection = () => {
 
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/start-project">
-                <Button variant="hero" className="group rounded-full">
+                <ShimmerButton className="group">
                   Start a Packaging Project
                   <ArrowRight
                     size={18}
-                    className="text-copper transition-transform group-hover:translate-x-1"
+                    className="text-copper transition-transform group-hover:translate-x-1 ml-2"
                   />
-                </Button>
+                </ShimmerButton>
               </Link>
               <Link to="/materials">
-                <Button variant="hero-outline">Explore Materials</Button>
+                <Button variant="outline" className="rounded-full px-8 py-4 h-auto">
+                  Explore Materials
+                </Button>
               </Link>
             </div>
           </motion.div>

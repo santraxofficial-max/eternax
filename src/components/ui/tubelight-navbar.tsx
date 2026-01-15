@@ -78,7 +78,7 @@ export function NavBar({ items, className }: NavBarProps) {
         className
       )}
     >
-      <div className="flex items-center gap-1 bg-midnight-light/80 backdrop-blur-xl border border-ash-dark/20 py-1.5 px-1.5 rounded-full shadow-lg">
+      <div className="flex items-center gap-1 bg-transparent backdrop-blur-sm border border-ash-dark/10 py-1.5 px-1.5 rounded-full">
         {/* Navigation Items Only */}
         {items.map((item) => {
           const Icon = item.icon;
@@ -92,7 +92,7 @@ export function NavBar({ items, className }: NavBarProps) {
               className={cn(
                 "relative cursor-pointer text-sm font-medium px-5 py-2.5 rounded-full transition-all duration-300",
                 "text-concrete-muted hover:text-concrete",
-                isActive && "text-midnight"
+                isActive && "text-concrete"
               )}
             >
               <span className="relative z-10 flex items-center gap-2">
@@ -105,7 +105,7 @@ export function NavBar({ items, className }: NavBarProps) {
               {isActive && (
                 <motion.div
                   layoutId="tubelight"
-                  className="absolute inset-0 bg-copper rounded-full"
+                  className="absolute inset-0 bg-ash-dark/60 rounded-full"
                   initial={false}
                   transition={{
                     type: "spring",
@@ -113,9 +113,10 @@ export function NavBar({ items, className }: NavBarProps) {
                     damping: 30,
                   }}
                 >
-                  {/* Tubelight glow effect */}
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-copper-glow rounded-full blur-md" />
-                  <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-12 h-1 bg-copper-light/50 rounded-full blur-sm" />
+                  {/* Tubelight glow effect - copper glow on top */}
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-2 bg-copper rounded-full blur-lg opacity-80" />
+                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-16 h-2 bg-copper-glow rounded-full blur-md opacity-60" />
+                  <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-20 h-1 bg-copper-light/40 rounded-full blur-sm" />
                 </motion.div>
               )}
             </Link>
