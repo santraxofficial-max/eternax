@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import { LucideIcon, Home, Info, Package, Leaf } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -126,7 +126,7 @@ export function NavBar({ items, className }: NavBarProps) {
   );
 }
 
-// Default navigation items for Eterna
+// Default navigation items for Eterna - Only 4 core pages
 export const eternaNavItems: NavItem[] = [
   { name: "Home", url: "/", icon: Home },
   { name: "About", url: "/about", icon: Info },

@@ -9,16 +9,18 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-copper-light shadow-md hover:shadow-lg",
+        default: "bg-secondary text-foreground border border-ash hover:border-copper hover:text-copper shadow-md hover:shadow-lg",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline: "border border-ash bg-transparent text-foreground hover:border-copper hover:text-copper transition-colors",
         secondary: "bg-secondary text-secondary-foreground hover:bg-midnight-lighter",
         ghost: "text-foreground hover:bg-midnight-light hover:text-foreground",
         link: "text-copper underline-offset-4 hover:underline",
+        // Copper border CTA - NOT filled, just border with dark inside
+        "copper-outline": "border-2 border-copper bg-midnight-light/50 text-foreground font-medium hover:bg-midnight-light hover:shadow-copper transition-all duration-300",
         // Premium Eterna variants
         copper: "bg-gradient-to-r from-copper to-copper-dark text-primary-foreground font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]",
-        hero: "bg-gradient-to-r from-copper to-copper-dark text-primary-foreground font-semibold text-base px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]",
-        "hero-outline": "border-2 border-foreground/30 bg-transparent text-foreground font-semibold text-base px-8 py-6 rounded-xl hover:border-copper hover:text-copper transition-all duration-300",
+        hero: "border-2 border-copper bg-midnight-light/50 text-foreground font-semibold text-base px-8 py-6 rounded-xl hover:bg-midnight-light hover:shadow-copper transition-all duration-300",
+        "hero-outline": "border-2 border-ash/50 bg-transparent text-foreground font-semibold text-base px-8 py-6 rounded-xl hover:border-copper hover:text-copper transition-all duration-300",
         premium: "bg-midnight-light border border-ash/50 text-foreground font-medium hover:border-copper hover:bg-midnight-lighter transition-all duration-300",
       },
       size: {

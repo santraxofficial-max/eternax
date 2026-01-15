@@ -44,11 +44,11 @@ export const CTASection = () => {
 
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/start-project">
-                <Button variant="hero" className="group">
+                <Button variant="hero" className="group rounded-full">
                   Start a Packaging Project
                   <ArrowRight
                     size={18}
-                    className="transition-transform group-hover:translate-x-1"
+                    className="text-copper transition-transform group-hover:translate-x-1"
                   />
                 </Button>
               </Link>
