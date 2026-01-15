@@ -10,12 +10,12 @@ interface LayoutProps {
 
 export const Layout = ({ children, hideFooter = false }: LayoutProps) => {
   return (
-    <div className="min-h-screen bg-background flex flex-col relative">
+    <div className="min-h-screen flex flex-col relative">
       {/* Global Silk Background Animation */}
       <SilkBackground />
-      
+
       <Header />
-      <main className="flex-1 pt-24 relative z-10">{children}</main>
+      <main className="flex-1 pt-0 sm:pt-24 pb-20 sm:pb-0 relative z-10">{children}</main>
       {!hideFooter && <Footer />}
     </div>
   );

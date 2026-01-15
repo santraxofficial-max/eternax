@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 
 interface SilkBackgroundProps {
   className?: string;
@@ -20,13 +20,13 @@ export const SilkBackground = ({ className }: SilkBackgroundProps) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     let time = 0;
-    const speed = 0.015;
-    const scale = 1.5;
-    const noiseIntensity = 0.6;
+    const speed = 0.02;
+    const scale = 2;
+    const noiseIntensity = 0.8;
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
@@ -34,7 +34,7 @@ export const SilkBackground = ({ className }: SilkBackgroundProps) => {
     };
 
     resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
+    window.addEventListener('resize', resizeCanvas);
 
     // Simple noise function
     const noise = (x: number, y: number) => {
@@ -47,12 +47,11 @@ export const SilkBackground = ({ className }: SilkBackgroundProps) => {
     const animate = () => {
       const { width, height } = canvas;
 
-      // Create gradient background - pitch black base
+      // Create gradient background
       const gradient = ctx.createLinearGradient(0, 0, width, height);
-      gradient.addColorStop(0, "#050505");
-      gradient.addColorStop(0.3, "#0a0a0a");
-      gradient.addColorStop(0.7, "#080808");
-      gradient.addColorStop(1, "#050505");
+      gradient.addColorStop(0, '#1a1a1a');
+      gradient.addColorStop(0.5, '#2a2a2a');
+      gradient.addColorStop(1, '#1a1a1a');
 
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
@@ -67,28 +66,23 @@ export const SilkBackground = ({ className }: SilkBackgroundProps) => {
           const v = (y / height) * scale;
 
           const tOffset = speed * time;
-          const tex_x = u;
-          const tex_y = v + 0.025 * Math.sin(6.0 * tex_x - tOffset);
+          let tex_x = u;
+          let tex_y = v + 0.03 * Math.sin(8.0 * tex_x - tOffset);
 
-          const pattern =
-            0.5 +
-            0.5 *
-              Math.sin(
-                4.0 *
-                  (tex_x +
-                    tex_y +
-                    Math.cos(2.5 * tex_x + 4.0 * tex_y) +
-                    0.015 * tOffset) +
-                  Math.sin(15.0 * (tex_x + tex_y - 0.08 * tOffset))
-              );
+          const pattern = 0.6 + 0.4 * Math.sin(
+            5.0 * (tex_x + tex_y +
+              Math.cos(3.0 * tex_x + 5.0 * tex_y) +
+              0.02 * tOffset) +
+            Math.sin(20.0 * (tex_x + tex_y - 0.1 * tOffset))
+          );
 
           const rnd = noise(x, y);
-          const intensity = Math.max(0, pattern - (rnd / 20.0) * noiseIntensity);
+          const intensity = Math.max(0, pattern - rnd / 15.0 * noiseIntensity);
 
-          // Subtle gray silk color
-          const r = Math.floor(50 * intensity);
-          const g = Math.floor(50 * intensity);
-          const b = Math.floor(55 * intensity);
+          // Purple-gray silk color
+          const r = Math.floor(123 * intensity);
+          const g = Math.floor(116 * intensity);
+          const b = Math.floor(129 * intensity);
           const a = 255;
 
           const index = (y * width + x) * 4;
@@ -103,18 +97,13 @@ export const SilkBackground = ({ className }: SilkBackgroundProps) => {
 
       ctx.putImageData(imageData, 0, 0);
 
-      // Add subtle radial overlay for depth
+      // Add subtle overlay for depth
       const overlayGradient = ctx.createRadialGradient(
-        width / 2,
-        height / 2,
-        0,
-        width / 2,
-        height / 2,
-        Math.max(width, height) * 0.8
+        width / 2, height / 2, 0,
+        width / 2, height / 2, Math.max(width, height) / 2
       );
-      overlayGradient.addColorStop(0, "rgba(0, 0, 0, 0)");
-      overlayGradient.addColorStop(0.5, "rgba(0, 0, 0, 0.1)");
-      overlayGradient.addColorStop(1, "rgba(0, 0, 0, 0.4)");
+      overlayGradient.addColorStop(0, 'rgba(0, 0, 0, 0.1)');
+      overlayGradient.addColorStop(1, 'rgba(0, 0, 0, 0.4)');
 
       ctx.fillStyle = overlayGradient;
       ctx.fillRect(0, 0, width, height);
@@ -126,7 +115,7 @@ export const SilkBackground = ({ className }: SilkBackgroundProps) => {
     animate();
 
     return () => {
-      window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener('resize', resizeCanvas);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }

@@ -33,7 +33,7 @@ export const ProcessSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-24 md:py-32 bg-background relative overflow-hidden">
+    <section ref={ref} className="py-24 md:py-32 relative overflow-hidden">
       <div className="section-container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

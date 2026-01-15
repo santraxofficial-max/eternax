@@ -60,11 +60,17 @@ export const TeamSection = () => {
 
   return (
     <section
-      className="relative min-h-screen bg-background overflow-hidden py-24"
+      className="relative min-h-screen overflow-hidden py-24"
       onMouseMove={handleMouseMove}
     >
       {/* Background Ambience */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background via-midnight-light/20 to-background" />
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 40% at 50% 0%, hsl(24, 70%, 50%, 0.05), transparent 60%)",
+        }}
+      />
       <div
         className="pointer-events-none absolute inset-0"
         style={{

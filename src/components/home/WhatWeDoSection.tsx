@@ -1,27 +1,67 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Palette, Leaf, Factory } from "lucide-react";
+import { BentoGrid, type BentoItem } from "@/components/ui/bento-grid";
+import {
+    Palette,
+    Leaf,
+    Factory,
+    Shield,
+    Zap,
+    Users,
+} from "lucide-react";
 
-const features = [
-  {
-    icon: Palette,
-    title: "Custom Food Packaging",
-    description:
-      "From concept to production—we design packaging that tells your brand story while protecting what matters.",
-  },
-  {
-    icon: Leaf,
-    title: "Sustainable Materials",
-    description:
-      "Every material we use is sourced for performance and planet. Biodegradable, recyclable, and food-safe.",
-  },
-  {
-    icon: Factory,
-    title: "Manufacturer-Led Execution",
-    description:
-      "We're not middlemen. We manufacture, which means faster timelines, better prices, and guaranteed quality.",
-  },
+const features: BentoItem[] = [
+    {
+        title: "Custom Food Packaging Design",
+        meta: "From concept to shelf",
+        description:
+            "Complete packaging solutions tailored for food brands. We design packaging that protects products while telling your unique story.",
+        icon: <Palette className="w-4 h-4 text-ash-dark" />,
+        status: "Live",
+        tags: ["Design", "Branding", "Food-Safe"],
+        colSpan: 2,
+        hasPersistentHover: true,
+    },
+    {
+        title: "Sustainable Materials",
+        meta: "Planet-friendly options",
+        description: "Biodegradable, recyclable materials that maintain food safety while reducing environmental impact.",
+        icon: <Leaf className="w-4 h-4 text-ash-dark" />,
+        status: "Premium",
+        tags: ["Eco-Friendly", "Biodegradable"],
+    },
+    {
+        title: "Direct Manufacturing",
+        meta: "No middlemen, faster delivery",
+        description: "We manufacture in-house, ensuring quality control, competitive pricing, and faster turnaround times.",
+        icon: <Factory className="w-4 h-4 text-ash-dark" />,
+        tags: ["Manufacturing", "Quality", "Speed"],
+        colSpan: 2,
+    },
+    {
+        title: "Food Safety Compliance",
+        meta: "FDA & Global standards",
+        description: "All packaging meets stringent food safety regulations and international quality standards.",
+        icon: <Shield className="w-4 h-4 text-ash-dark" />,
+        status: "Certified",
+        tags: ["FDA", "Safety", "Compliance"],
+    },
+    {
+        title: "Rapid Prototyping",
+        meta: "Quick iterations",
+        description: "Fast-track your packaging development with our rapid prototyping and testing services.",
+        icon: <Zap className="w-4 h-4 text-ash-dark" />,
+        status: "Express",
+        tags: ["Prototyping", "Testing", "Speed"],
+    },
+    {
+        title: "Brand Partnership",
+        meta: "End-to-end support",
+        description: "From initial consultation to market launch, we're your dedicated packaging partner.",
+        icon: <Users className="w-4 h-4 text-ash-dark" />,
+        tags: ["Consulting", "Support", "Partnership"],
+    },
 ];
 
 export const WhatWeDoSection = () => {
@@ -50,36 +90,14 @@ export const WhatWeDoSection = () => {
           </p>
         </motion.div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="group relative"
-            >
-              <div className="card-premium p-8 h-full transition-all duration-500 hover:border-copper/30">
-                {/* Icon - Copper border, dark inside */}
-                <div className="w-14 h-14 rounded-xl bg-midnight-light border border-copper/50 flex items-center justify-center mb-6 group-hover:border-copper transition-colors duration-500">
-                  <feature.icon size={24} className="text-copper" />
-                </div>
-
-                {/* Content */}
-                <h3 className="text-xl font-semibold text-concrete mb-3">
-                  {feature.title}
-                </h3>
-                <p className="text-concrete-muted leading-relaxed">
-                  {feature.description}
-                </p>
-
-                {/* Hover Border Glow */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-copper/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {/* BentoGrid Features */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <BentoGrid items={features} />
+        </motion.div>
       </div>
     </section>
   );

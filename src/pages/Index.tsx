@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout/Layout";
 import { HeroSection } from "@/components/home/HeroSection";
+import Component from "@/components/ui/bento-grid-01";
 import { WhatWeDoSection } from "@/components/home/WhatWeDoSection";
 import { WhyEternaSection } from "@/components/home/WhyEternaSection";
 import { IndustrySection } from "@/components/home/IndustrySection";
@@ -11,6 +12,7 @@ const Index = () => {
   return (
     <Layout>
       <HeroSection />
+      <Component />
       <WhatWeDoSection />
       <WhyEternaSection />
       <IndustrySection />

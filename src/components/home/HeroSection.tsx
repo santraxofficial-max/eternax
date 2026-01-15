@@ -16,14 +16,6 @@ export const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden -mt-24">
-      {/* Gradient Overlay for depth */}
-      <div
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 50% 40%, transparent 0%, rgba(0,0,0,0.5) 100%)",
-        }}
-      />
 
       {/* Content */}
       <div
@@ -87,18 +79,6 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      {/* Corner Accent */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1.2 }}
-        className="absolute bottom-8 right-8 z-10 text-sm tracking-widest text-concrete-muted"
-      >
-        2025
-      </motion.div>
-
-      {/* Bottom Fade */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
     </section>
   );
 };

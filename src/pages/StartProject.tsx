@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 import { IndustrySelectStep } from "@/components/onboarding/steps/IndustrySelectStep";
 import { ProductBrowseStep } from "@/components/onboarding/steps/ProductBrowseStep";
 import { DesignStudioStep } from "@/components/onboarding/steps/DesignStudioStep";
@@ -140,7 +141,16 @@ const StartProject = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen relative">
+      {/* Fixed Logo - Top Left */}
+      <div className="fixed top-6 left-6 md:left-8 z-50">
+        <Link to="/" className="group">
+          <span className="text-xl md:text-2xl font-bold tracking-tight text-concrete transition-colors duration-300 group-hover:text-copper">
+            ETERNA
+          </span>
+        </Link>
+      </div>
+
       <AnimatePresence mode="wait">
         <motion.div
           key={`${currentStep}-${currentProductIndex}-${designPhase}`}
