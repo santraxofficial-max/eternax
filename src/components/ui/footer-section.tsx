@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { FooterBackgroundGradient, TextHoverEffect } from '@/components/ui/hover-footer';
+import { CommitsGrid } from '@/components/ui/commits-grid';
 
 interface FooterLink {
   label: string;
@@ -176,6 +177,16 @@ export function Footer() {
       </div>
 
       <FooterBackgroundGradient />
+
+      {/* Commits Grid - GitHub style contribution grid with ETERNA */}
+      <div className="relative bg-background/80 border-t border-border/20 py-8 md:py-12">
+        <div className="max-w-7xl mx-auto px-6">
+          <p className="text-center text-xs text-muted-foreground mb-4 uppercase tracking-wider">
+            Built with passion
+          </p>
+          <CommitsGrid text="ETERNA" />
+        </div>
+      </div>
     </footer>
   );
 }

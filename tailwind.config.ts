@@ -134,6 +134,15 @@ export default {
           "65%, 85%": { transform: "translateZ(0) rotate(270deg)" },
           "100%": { transform: "translateZ(0) rotate(360deg)" },
         },
+        highlight: {
+          "0%": { backgroundColor: "transparent" },
+          "100%": { backgroundColor: "var(--highlight)" },
+        },
+        flash: {
+          "0%": { backgroundColor: "hsl(var(--card))" },
+          "50%": { backgroundColor: "var(--highlight)" },
+          "100%": { backgroundColor: "hsl(var(--card))" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -146,6 +155,8 @@ export default {
         shimmer: "shimmer 2s linear infinite",
         "shimmer-slide": "shimmer-slide var(--speed) ease-in-out infinite alternate",
         "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
+        highlight: "highlight 0.6s ease forwards",
+        flash: "flash 0.6s ease forwards",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
