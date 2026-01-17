@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface SilkBackgroundProps {
   className?: string;
@@ -10,6 +11,7 @@ export const SilkBackground = ({ className }: SilkBackgroundProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
   const [isLoaded, setIsLoaded] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 300);
@@ -46,12 +48,19 @@ export const SilkBackground = ({ className }: SilkBackgroundProps) => {
 
     const animate = () => {
       const { width, height } = canvas;
+      const isDark = theme === 'dark';
 
-      // Create gradient background
+      // Create gradient background based on theme
       const gradient = ctx.createLinearGradient(0, 0, width, height);
-      gradient.addColorStop(0, '#1a1a1a');
-      gradient.addColorStop(0.5, '#2a2a2a');
-      gradient.addColorStop(1, '#1a1a1a');
+      if (isDark) {
+        gradient.addColorStop(0, '#0a0a0a');
+        gradient.addColorStop(0.5, '#1a1a1a');
+        gradient.addColorStop(1, '#0a0a0a');
+      } else {
+        gradient.addColorStop(0, '#f8fafc');
+        gradient.addColorStop(0.5, '#e2e8f0');
+        gradient.addColorStop(1, '#f8fafc');
+      }
 
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
@@ -79,18 +88,26 @@ export const SilkBackground = ({ className }: SilkBackgroundProps) => {
           const rnd = noise(x, y);
           const intensity = Math.max(0, pattern - rnd / 15.0 * noiseIntensity);
 
-          // Purple-gray silk color
-          const r = Math.floor(123 * intensity);
-          const g = Math.floor(116 * intensity);
-          const b = Math.floor(129 * intensity);
-          const a = 255;
+          // Different color schemes for dark vs light mode
+          let r, g, b;
+          if (isDark) {
+            // Dark mode: Purple-gray silk
+            r = Math.floor(100 * intensity);
+            g = Math.floor(95 * intensity);
+            b = Math.floor(110 * intensity);
+          } else {
+            // Light mode: Warm cream/white silk
+            r = Math.floor(220 + 35 * intensity);
+            g = Math.floor(215 + 35 * intensity);
+            b = Math.floor(210 + 40 * intensity);
+          }
 
           const index = (y * width + x) * 4;
           if (index < data.length) {
             data[index] = r;
             data[index + 1] = g;
             data[index + 2] = b;
-            data[index + 3] = a;
+            data[index + 3] = 255;
           }
         }
       }
@@ -102,8 +119,13 @@ export const SilkBackground = ({ className }: SilkBackgroundProps) => {
         width / 2, height / 2, 0,
         width / 2, height / 2, Math.max(width, height) / 2
       );
-      overlayGradient.addColorStop(0, 'rgba(0, 0, 0, 0.1)');
-      overlayGradient.addColorStop(1, 'rgba(0, 0, 0, 0.4)');
+      if (isDark) {
+        overlayGradient.addColorStop(0, 'rgba(0, 0, 0, 0.1)');
+        overlayGradient.addColorStop(1, 'rgba(0, 0, 0, 0.4)');
+      } else {
+        overlayGradient.addColorStop(0, 'rgba(255, 255, 255, 0.1)');
+        overlayGradient.addColorStop(1, 'rgba(240, 240, 245, 0.3)');
+      }
 
       ctx.fillStyle = overlayGradient;
       ctx.fillRect(0, 0, width, height);
@@ -120,7 +142,7 @@ export const SilkBackground = ({ className }: SilkBackgroundProps) => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, []);
+  }, [theme]);
 
   return (
     <canvas
