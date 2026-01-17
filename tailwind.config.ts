@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         sans: ["DM Sans", "Inter", "system-ui", "sans-serif"],
         display: ["DM Sans", "Inter", "system-ui", "sans-serif"],
+        "neue-haas": ["Helvetica Neue", "DM Sans", "Inter", "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { NavBar, eternaNavItems } from "@/components/ui/tubelight-navbar";
+import { FloatingIcons } from "@/components/ui/floating-icons";
 
 export const Header = () => {
   const location = useLocation();
@@ -20,6 +21,9 @@ export const Header = () => {
 
       {/* Centered Tubelight Navbar */}
       <NavBar items={eternaNavItems} />
+
+      {/* Floating Icons - Top Right */}
+      <FloatingIcons />
     </>
   );
 };

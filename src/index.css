@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@100..900&family=Helvetica+Neue:wght@100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,9 +8,6 @@
    60% Midnight Black | 25% Concrete White | 10% Ash Gray | 5% Burnt Copper
    Typography: Neue Haas Grotesk
 */
-
-/* Neue Haas Grotesk - Using closest Google Fonts alternative: DM Sans + Inter */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@100..900&display=swap');
 
 @layer base {
   :root {
@@ -87,12 +86,51 @@
     --sidebar-accent-foreground: 30 5% 92%;
     --sidebar-border: 0 0% 15%;
     --sidebar-ring: 24 70% 50%;
+
+    /* Gradient Button Variables */
+    --color-background: hsl(var(--midnight));
+    --color-text: hsl(var(--concrete));
   }
 
-  /* No dark mode toggle - site is dark by design */
-  .dark {
-    --background: 0 0% 0%;
-    --foreground: 30 5% 92%;
+  /* Light mode theme */
+  .light {
+    --background: 248 250 252;
+    --foreground: 222 84% 4.9%;
+    --midnight: 248 250 252;
+    --midnight-light: 241 245 249;
+    --midnight-lighter: 235 242 250;
+    --concrete: 222 84% 4.9%;
+    --concrete-muted: 215 16% 47%;
+    --ash: 215 16% 47%;
+    --ash-light: 215 20% 65%;
+    --ash-dark: 215 25% 27%;
+    --copper: 24 70% 50%;
+    --copper-light: 24 65% 60%;
+    --copper-dark: 24 75% 40%;
+    --copper-glow: 24 80% 55%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 4.9%;
+    --card-hover: 241 245 249;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 4.9%;
+    --primary: 24 70% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 241 245 249;
+    --secondary-foreground: 222 84% 4.9%;
+    --muted: 241 245 249;
+    --muted-foreground: 215 16% 47%;
+    --accent: 24 70% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 84.2% 60.2%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 24 70% 50%;
+    --radius: 0.75rem;
+
+    /* Gradient Button Variables for Light Mode */
+    --color-background: hsl(var(--background));
+    --color-text: hsl(var(--foreground));
   }
 }
 
@@ -210,4 +248,54 @@
   .stagger-3 { animation-delay: 0.3s; }
   .stagger-4 { animation-delay: 0.4s; }
   .stagger-5 { animation-delay: 0.5s; }
+
+  /* Gradient Button Animation - Rotating Glowing Border */
+  .rotatingGradient {
+    position: relative;
+    background: var(--color-background);
+    border-radius: 50px;
+    overflow: hidden;
+  }
+
+  .rotatingGradient::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: conic-gradient(from 0deg,
+      transparent 0deg,
+      transparent 300deg,
+      #D2691E 330deg,
+      #CD853F 30deg,
+      #A0522D 60deg,
+      transparent 60deg
+    );
+    border-radius: 53px;
+    animation: rotateGlow 6s linear infinite;
+    filter: blur(0.5px);
+    z-index: 0;
+  }
+
+  .rotatingGradient::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    background: var(--color-background);
+    border-radius: 47px;
+    z-index: 1;
+  }
+
+  @keyframes rotateGlow {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 }
