@@ -24,7 +24,7 @@ export const CommitsGrid = ({ text }: { text: string }) => {
 
     const width = Math.max(cleanedText.length * 6, 6) + 1;
 
-    let currentPosition = 1;
+    let currentPosition = 1; // we start at 1 to leave space for the top border
     const highlightedCells: number[] = [];
 
     cleanedText
@@ -45,7 +45,7 @@ export const CommitsGrid = ({ text }: { text: string }) => {
     return {
       cells: highlightedCells,
       width,
-      height: 9,
+      height: 9, // 7+2 for the top and bottom borders
     };
   };
 
@@ -55,12 +55,11 @@ export const CommitsGrid = ({ text }: { text: string }) => {
     height: gridHeight,
   } = generateHighlightedCells(text);
 
-  // Burnt copper branding colors
   const getRandomColor = () => {
     const commitColors = [
-      "hsl(25, 60%, 50%)",   // bright copper
-      "hsl(25, 50%, 35%)",   // medium copper
-      "hsl(25, 40%, 25%)"    // dark copper
+      "#b87333", // bright copper
+      "#a0522d", // medium copper rust
+      "#654321"  // dark copper rust
     ];
     const randomIndex = Math.floor(Math.random() * commitColors.length);
     return commitColors[randomIndex];
@@ -70,10 +69,11 @@ export const CommitsGrid = ({ text }: { text: string }) => {
   const getRandomFlash = () => +(Math.random() < 0.3);
 
   return (
-    <div
-      className="grid gap-1 p-4 md:p-8 w-fit mx-auto"
+    <section
+      className="w-full max-w-xl bg-card border grid p-1.5 sm:p-3 gap-0.5 sm:gap-1 rounded-[10px] sm:rounded-[15px]"
       style={{
         gridTemplateColumns: `repeat(${gridWidth}, minmax(0, 1fr))`,
+        gridTemplateRows: `repeat(${gridHeight}, minmax(0, 1fr))`,
       }}
     >
       {Array.from({ length: gridWidth * gridHeight }).map((_, index) => {
@@ -84,20 +84,21 @@ export const CommitsGrid = ({ text }: { text: string }) => {
           <div
             key={index}
             className={cn(
-              "size-2 md:size-3 rounded-sm bg-muted/30 dark:bg-muted/20",
-              isHighlighted && "animate-highlight",
-              shouldFlash && "animate-flash"
+              `border h-full w-full aspect-square rounded-[4px] sm:rounded-[3px]`,
+              isHighlighted ? "animate-highlight" : "",
+              shouldFlash ? "animate-flash" : "",
+              !isHighlighted && !shouldFlash ? "bg-card" : ""
             )}
             style={
               {
-                "--highlight": isHighlighted ? getRandomColor() : "transparent",
-                animationDelay: isHighlighted || shouldFlash ? getRandomDelay() : "0s",
+                animationDelay: getRandomDelay(),
+                "--highlight": getRandomColor(),
               } as CSSProperties
             }
           />
         );
       })}
-    </div>
+    </section>
   );
 };
 

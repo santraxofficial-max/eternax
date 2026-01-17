@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import GradientButton from "@/components/ui/button-1";
+import { ShinyButton } from "@/components/ui/shiny-button";
 
 export const HeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -28,7 +28,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-light tracking-tight text-concrete leading-none font-neue-haas"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-light tracking-wide text-concrete leading-none font-neue-haas"
           >
             ETERNA
           </motion.h1>
@@ -44,7 +44,7 @@ export const HeroSection = () => {
           </motion.p>
 
 
-          {/* CTA Button - Gradient Button */}
+          {/* CTA Button - Shiny Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -52,15 +52,9 @@ export const HeroSection = () => {
             className="mt-12 md:mt-16 flex justify-center"
           >
             <Link to="/start-project">
-              <GradientButton
-                width="auto"
-                height="60px"
-                onClick={() => {}}
-                className="px-6 inline-block"
-                style={{ width: 'fit-content' }}
-              >
+              <ShinyButton className="px-8 py-4 text-lg font-semibold">
                 Design Your Packaging
-              </GradientButton>
+              </ShinyButton>
             </Link>
           </motion.div>
         </div>

@@ -40,7 +40,7 @@ const GradientButton = ({
         tabIndex={disabled ? -1 : 0}
         className={`
           ${commonGradientStyles}
-          rotatingGradient
+          lineGradient
           ${className}
         `}
         style={{
@@ -56,6 +56,7 @@ const GradientButton = ({
         <span className="relative z-10 text-[var(--color-text)] flex items-center justify-center label px-4 py-2">
           {children}
         </span>
+        <div className="moving-line"></div>
       </div>
     </div>
   );

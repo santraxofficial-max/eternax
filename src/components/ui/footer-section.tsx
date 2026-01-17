@@ -1,192 +1,187 @@
-'use client';
-import React from 'react';
+"use client"
+
+import * as React from "react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Switch } from "@/components/ui/switch"
+import { Textarea } from "@/components/ui/textarea"
 import {
-  Mail,
-  Phone,
-  MapPin,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Youtube,
-  Package,
-} from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { FooterBackgroundGradient, TextHoverEffect } from '@/components/ui/hover-footer';
-import { CommitsGrid } from '@/components/ui/commits-grid';
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { Facebook, Instagram, Linkedin, Moon, Send, Sun, Twitter, Mail, Phone, MapPin } from "lucide-react"
 
-interface FooterLink {
-  label: string;
-  href: string;
-  isExternal?: boolean;
-}
+function Footerdemo() {
+  const [isDarkMode, setIsDarkMode] = React.useState(true)
+  const [isChatOpen, setIsChatOpen] = React.useState(false)
 
-interface FooterSection {
-  title: string;
-  links: FooterLink[];
-}
+  React.useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark")
+    } else {
+      document.documentElement.classList.remove("dark")
+    }
+  }, [isDarkMode])
 
-const footerLinks: FooterSection[] = [
-  {
-    title: 'Product',
-    links: [
-      { label: 'What We Build', href: '/what-we-build' },
-      { label: 'Materials', href: '/materials' },
-      { label: 'Start a Project', href: '/start-project' },
-    ],
-  },
-  {
-    title: 'Company',
-    links: [
-      { label: 'About Us', href: '/about' },
-      { label: 'Privacy Policy', href: '/privacy' },
-      { label: 'Terms of Services', href: '/terms' },
-    ],
-  },
-  {
-    title: 'Resources',
-    links: [
-      { label: 'Blog', href: '/blog' },
-      { label: 'Help', href: '/help' },
-      { label: 'Contact', href: '/contact' },
-    ],
-  },
-];
-
-const contactInfo = [
-  {
-    icon: <Mail size={16} className="text-copper" />,
-    text: 'hello@eterna.co',
-    href: 'mailto:hello@eterna.co',
-  },
-  {
-    icon: <Phone size={16} className="text-copper" />,
-    text: '+91 98765 43210',
-    href: 'tel:+919876543210',
-  },
-  {
-    icon: <MapPin size={16} className="text-copper" />,
-    text: 'Mumbai, India',
-  },
-];
-
-const socialLinks = [
-  { icon: <Facebook size={18} />, label: 'Facebook', href: '#' },
-  { icon: <Instagram size={18} />, label: 'Instagram', href: '#' },
-  { icon: <Youtube size={18} />, label: 'Youtube', href: '#' },
-  { icon: <Linkedin size={18} />, label: 'LinkedIn', href: '#' },
-];
-
-export function Footer() {
   return (
-    <footer className="relative w-full bg-background/50 backdrop-blur-sm border-t border-border/30 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 py-16 lg:py-20">
-        {/* Main Footer Content */}
-        <div className="grid gap-12 lg:grid-cols-4">
-          {/* Brand Column */}
-          <div className="space-y-6">
-            <div className="flex items-center gap-3">
-              <Package className="size-8 text-copper" />
-              <span className="text-xl font-bold text-foreground">ETERNA</span>
-            </div>
-            <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-              Designing the future of sustainable packaging. Premium eco-friendly solutions for conscious brands.
+    <footer className="relative border-t bg-transparent text-foreground transition-colors duration-300">
+      <div className="container mx-auto px-4 py-12 md:px-6 lg:px-8">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+          <div className="relative">
+            <h2 className="mb-4 text-3xl font-bold tracking-tight">Stay Connected</h2>
+            <p className="mb-6 text-muted-foreground">
+              Join our newsletter for the latest updates on sustainable packaging solutions and exclusive offers.
             </p>
-            
-            {/* Contact Info */}
-            <div className="space-y-3 pt-4">
-              {contactInfo.map((item, i) => (
-                <div key={i} className="flex items-center gap-3 text-sm text-muted-foreground">
-                  {item.icon}
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      className="hover:text-copper transition-colors duration-300"
-                    >
-                      {item.text}
-                    </a>
-                  ) : (
-                    <span>{item.text}</span>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Link Columns */}
-          {footerLinks.map((section) => (
-            <div key={section.title}>
-              <h3 className="text-xs font-semibold text-copper uppercase tracking-wider mb-4">
-                {section.title}
-              </h3>
-              <ul className="space-y-3">
-                {section.links.map((link) => (
-                  <li key={link.label}>
-                    {link.isExternal ? (
-                      <a
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-                      >
-                        {link.label}
-                      </a>
-                    ) : (
-                      <Link
-                        to={link.href}
-                        className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-                      >
-                        {link.label}
-                      </Link>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        {/* Divider */}
-        <div className="my-12 h-px bg-gradient-to-r from-transparent via-border/50 to-transparent" />
-
-        {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Social Icons */}
-          <div className="flex items-center gap-4">
-            {socialLinks.map(({ icon, label, href }) => (
-              <a
-                key={label}
-                href={href}
-                aria-label={label}
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-muted/50 text-muted-foreground hover:bg-copper/20 hover:text-copper transition-all duration-300"
+            <form className="relative">
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                className="pr-12 backdrop-blur-sm"
+              />
+              <Button
+                type="submit"
+                size="icon"
+                className="absolute right-1 top-1 h-8 w-8 rounded-full bg-primary text-primary-foreground transition-transform hover:scale-105"
               >
-                {icon}
-              </a>
-            ))}
+                <Send className="h-4 w-4" />
+                <span className="sr-only">Subscribe</span>
+              </Button>
+            </form>
+            <div className="absolute -right-4 top-0 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
           </div>
-
-          {/* Copyright */}
+          <div>
+            <h3 className="mb-4 text-lg font-semibold">Quick Links</h3>
+            <nav className="space-y-2 text-sm">
+              <a href="/what-we-build" className="block transition-colors hover:text-primary">
+                What We Build
+              </a>
+              <a href="/materials" className="block transition-colors hover:text-primary">
+                Materials
+              </a>
+              <a href="/start-project" className="block transition-colors hover:text-primary">
+                Start a Project
+              </a>
+              <a href="/about" className="block transition-colors hover:text-primary">
+                About Us
+              </a>
+              <a href="/contact" className="block transition-colors hover:text-primary">
+                Contact
+              </a>
+            </nav>
+          </div>
+          <div>
+            <h3 className="mb-4 text-lg font-semibold">Contact Us</h3>
+            <address className="space-y-2 text-sm not-italic">
+              <div className="flex items-center gap-2">
+                <MapPin className="h-4 w-4" />
+                <span>Mumbai, India</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4" />
+                <a href="tel:+919876543210" className="hover:text-primary transition-colors">
+                  +91 98765 43210
+                </a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                <a href="mailto:hello@eterna.co" className="hover:text-primary transition-colors">
+                  hello@eterna.co
+                </a>
+              </div>
+            </address>
+          </div>
+          <div className="relative">
+            <h3 className="mb-4 text-lg font-semibold">Follow Us</h3>
+            <div className="mb-6 flex space-x-4">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="outline" size="icon" className="rounded-full">
+                      <Facebook className="h-4 w-4" />
+                      <span className="sr-only">Facebook</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Follow us on Facebook</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="outline" size="icon" className="rounded-full">
+                      <Twitter className="h-4 w-4" />
+                      <span className="sr-only">Twitter</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Follow us on Twitter</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="outline" size="icon" className="rounded-full">
+                      <Instagram className="h-4 w-4" />
+                      <span className="sr-only">Instagram</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Follow us on Instagram</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="outline" size="icon" className="rounded-full">
+                      <Linkedin className="h-4 w-4" />
+                      <span className="sr-only">LinkedIn</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Connect with us on LinkedIn</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Sun className="h-4 w-4" />
+              <Switch
+                id="dark-mode"
+                checked={isDarkMode}
+                onCheckedChange={setIsDarkMode}
+              />
+              <Moon className="h-4 w-4" />
+              <Label htmlFor="dark-mode" className="sr-only">
+                Toggle dark mode
+              </Label>
+            </div>
+          </div>
+        </div>
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 text-center md:flex-row">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Eterna. All rights reserved.
           </p>
-        </div>
-      </div>
-
-      {/* Large Hover Text */}
-      <div className="relative h-32 md:h-48 flex items-center justify-center overflow-hidden">
-        <TextHoverEffect text="ETERNA" className="w-full h-full" />
-      </div>
-
-      <FooterBackgroundGradient />
-
-      {/* Commits Grid - GitHub style contribution grid with ETERNA */}
-      <div className="relative bg-background/80 border-t border-border/20 py-8 md:py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <p className="text-center text-xs text-muted-foreground mb-4 uppercase tracking-wider">
-            Built with passion
-          </p>
-          <CommitsGrid text="ETERNA" />
+          <nav className="flex gap-4 text-sm">
+            <a href="/privacy" className="transition-colors hover:text-primary">
+              Privacy Policy
+            </a>
+            <a href="/terms" className="transition-colors hover:text-primary">
+              Terms of Service
+            </a>
+            <a href="/cookies" className="transition-colors hover:text-primary">
+              Cookie Settings
+            </a>
+          </nav>
         </div>
       </div>
     </footer>
-  );
+  )
 }
+
+export { Footerdemo }

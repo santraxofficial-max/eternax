@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { SilkBackground } from "@/components/ui/silk-background";
+import { CommitsGrid } from "@/components/ui/commits-grid";
 
 interface LayoutProps {
   children: ReactNode;
@@ -17,6 +18,10 @@ export const Layout = ({ children, hideFooter = false }: LayoutProps) => {
       <Header />
       <main className="flex-1 pt-0 sm:pt-24 pb-20 sm:pb-0 relative z-10">{children}</main>
       {!hideFooter && <Footer />}
+      {/* Commits Grid Animation - Below Footer */}
+      <div className="flex justify-center py-8 px-4">
+        <CommitsGrid text="ETERNA" />
+      </div>
     </div>
   );
 };

@@ -1,3 +1,3 @@
-import { Footer } from '@/components/ui/footer-section';
+import { Footerdemo } from '@/components/ui/footer-section';
 
-export { Footer };
+export { Footerdemo as Footer };

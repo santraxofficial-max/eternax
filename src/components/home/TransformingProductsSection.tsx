@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useState, useMemo } from "react";
+import { useRef, useState, useMemo, useEffect, useCallback } from "react";
 import { Search, ChevronDown, Package, ArrowRight, Building2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -75,8 +75,123 @@ export const TransformingProductsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [selectedIndustry, setSelectedIndustry] = useState<Industry | null>(null);
-  const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isSearchDropdownOpen, setIsSearchDropdownOpen] = useState(false);
+  const [isIndustryDropdownOpen, setIsIndustryDropdownOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+
+  // Refs for accessibility and focus management
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
+  const industryButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Click outside detection
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchContainerRef.current &&
+        !searchContainerRef.current.contains(event.target as Node) &&
+        industryButtonRef.current &&
+        !industryButtonRef.current.contains(event.target as Node)
+      ) {
+        setIsSearchDropdownOpen(false);
+        setIsIndustryDropdownOpen(false);
+        setSelectedIndex(-1);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Reset selected index when dropdown closes
+  useEffect(() => {
+    if (!isSearchDropdownOpen && !isIndustryDropdownOpen) {
+      setSelectedIndex(-1);
+    }
+  }, [isSearchDropdownOpen, isIndustryDropdownOpen]);
+
+  // Get filtered industries for search
+  const getFilteredIndustries = useCallback(() => {
+    if (!searchQuery.trim()) return [];
+    const query = searchQuery.toLowerCase();
+
+    return industries
+      .filter(industry => industry.active)
+      .filter(industry => {
+        const name = industry.name.toLowerCase();
+        const id = industry.id.toLowerCase();
+
+        // Check if query matches any part of the name or id
+        return name.includes(query) || id.includes(query) ||
+               name.split(/[\s&-]+/).some(word => word.startsWith(query));
+      })
+      .sort((a, b) => {
+        const aName = a.name.toLowerCase();
+        const bName = b.name.toLowerCase();
+
+        // Prioritize exact matches and starts-with
+        const aStartsWith = aName.startsWith(query);
+        const bStartsWith = bName.startsWith(query);
+        const aIncludes = aName.includes(query);
+        const bIncludes = bName.includes(query);
+
+        if (aStartsWith && !bStartsWith) return -1;
+        if (!aStartsWith && bStartsWith) return 1;
+        if (aIncludes && !bIncludes) return -1;
+        if (!aIncludes && bIncludes) return 1;
+
+        return a.name.localeCompare(b.name);
+      });
+  }, [searchQuery]);
+
+  const filteredIndustries = getFilteredIndustries();
+  const allIndustries = industries.filter(industry => industry.active);
+
+  // Keyboard navigation handler
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    const currentList = isIndustryDropdownOpen ? allIndustries : filteredIndustries;
+    const maxIndex = currentList.length - 1;
+
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        setSelectedIndex(prev => prev < maxIndex ? prev + 1 : 0);
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        setSelectedIndex(prev => prev > 0 ? prev - 1 : maxIndex);
+        break;
+      case 'Enter':
+        e.preventDefault();
+        if (selectedIndex >= 0 && selectedIndex <= maxIndex) {
+          const selectedIndustry = currentList[selectedIndex];
+          setSelectedIndustry(selectedIndustry);
+          setSearchQuery("");
+          setIsSearchDropdownOpen(false);
+          setIsIndustryDropdownOpen(false);
+          setSelectedIndex(-1);
+          searchInputRef.current?.blur();
+        }
+        break;
+      case 'Escape':
+        setSearchQuery("");
+        setIsSearchDropdownOpen(false);
+        setIsIndustryDropdownOpen(false);
+        setSelectedIndex(-1);
+        searchInputRef.current?.blur();
+        break;
+    }
+  }, [filteredIndustries, allIndustries, selectedIndex, isIndustryDropdownOpen]);
+
+  // Handle industry selection
+  const handleIndustrySelect = useCallback((industry: Industry) => {
+    setSelectedIndustry(industry);
+    setSearchQuery("");
+    setIsSearchDropdownOpen(false);
+    setIsIndustryDropdownOpen(false);
+    setSelectedIndex(-1);
+  }, []);
 
   // Helper function to highlight matching text
   const highlightMatch = (text: string, query: string) => {
@@ -133,176 +248,140 @@ export const TransformingProductsSection = () => {
             </div>
 
             {/* Google-style Search Bar */}
-            <div className="relative">
+            <div className="relative" ref={searchContainerRef}>
               <div
-                className="relative bg-midnight-light border border-ash/20 rounded-xl overflow-hidden hover:border-ash/30 transition-colors cursor-text"
-                onClick={(e) => {
-                  // Focus the input when clicking anywhere on the search bar
-                  const input = e.currentTarget.querySelector('input');
-                  if (input) input.focus();
-                }}
+                className="relative bg-white border border-gray-200 rounded-full overflow-hidden hover:shadow-md transition-all duration-200"
+                onClick={() => searchInputRef.current?.focus()}
               >
                 {/* Search Input - Always Visible */}
                 <div className="flex items-center">
-                  <div className="flex-1 flex items-center px-4 py-3">
-                    <Search className="w-4 h-4 text-ash flex-shrink-0 mr-3" />
+                  <div className="flex-1 flex items-center px-6 py-4">
+                    <Search className="w-5 h-5 text-gray-400 flex-shrink-0 mr-4" />
                     <input
+                      ref={searchInputRef}
                       type="text"
                       placeholder={selectedIndustry ? `${selectedIndustry.name} - Click to search or change...` : "Search for your industry..."}
                       value={searchQuery}
                       onChange={(e) => {
                         setSearchQuery(e.target.value);
-                        setSearchOpen(true); // Open dropdown when typing
+                        setIsIndustryDropdownOpen(false);
+                        setIsSearchDropdownOpen(true);
+                        setSelectedIndex(-1);
                       }}
-                      onFocus={() => setSearchOpen(true)}
-                      onBlur={() => {
-                        // Delay closing to allow clicking on dropdown items
-                        setTimeout(() => setSearchOpen(false), 200);
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Escape') {
-                          setSearchQuery("");
-                          setSearchOpen(false);
-                        } else if (e.key === 'Enter' && searchQuery.trim()) {
-                          // Select first matching industry on Enter
-                          const filtered = industries.filter(industry =>
-                            industry.active && industry.name.toLowerCase().includes(searchQuery.toLowerCase())
-                          );
-                          if (filtered.length > 0) {
-                            setSelectedIndustry(filtered[0]);
-                            setSearchQuery("");
-                            setSearchOpen(false);
-                          }
+                      onFocus={() => {
+                        if (searchQuery.trim()) {
+                          setIsSearchDropdownOpen(true);
                         }
+                        setIsIndustryDropdownOpen(false);
                       }}
-                      className="flex-1 bg-transparent border-0 outline-none text-concrete placeholder-ash focus:ring-0 focus:outline-none"
+                      onBlur={() => {
+                        // Keep dropdown open briefly to allow clicking
+                        setTimeout(() => {
+                          if (!isIndustryDropdownOpen) {
+                            setIsSearchDropdownOpen(false);
+                          }
+                        }, 150);
+                      }}
+                      onKeyDown={handleKeyDown}
+                      role="combobox"
+                      aria-expanded={isSearchDropdownOpen || isIndustryDropdownOpen}
+                      aria-haspopup="listbox"
+                      aria-autocomplete="list"
+                      aria-activedescendant={selectedIndex >= 0 ? `industry-${selectedIndex}` : undefined}
+                      className="flex-1 bg-transparent border-0 outline-none text-gray-900 placeholder-gray-500 focus:ring-0 focus:outline-none text-base"
                     />
                   </div>
 
                   {/* Industry Button */}
                   <Button
+                    ref={industryButtonRef}
                     variant="ghost"
                     size="sm"
                     onClick={(e) => {
-                      e.stopPropagation(); // Prevent triggering the search bar click
-                      setSearchOpen(!searchOpen);
+                      e.stopPropagation();
+                      setIsIndustryDropdownOpen(!isIndustryDropdownOpen);
+                      setIsSearchDropdownOpen(false);
+                      setSelectedIndex(-1);
+                      if (!isIndustryDropdownOpen) {
+                        setSearchQuery("");
+                      }
                     }}
-                    className="h-10 w-10 rounded-lg bg-copper hover:bg-copper/90 text-midnight flex-shrink-0 mr-2"
+                    aria-label="Browse all industries"
+                    className="h-10 w-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 flex-shrink-0 mr-2 transition-colors"
                   >
                     <Building2 className="w-4 h-4" />
                   </Button>
                 </div>
 
-                {/* Dropdown Results */}
-                {searchOpen && (
-                  <div className="absolute top-full left-0 right-0 mt-1 bg-midnight-light border border-ash/20 rounded-lg shadow-lg z-50 max-h-80 overflow-y-auto">
-                    {!searchQuery && (
-                      <div className="p-3 border-b border-ash/10">
-                        <p className="text-xs text-ash font-medium">All Industries</p>
-                      </div>
-                    )}
+                {/* Unified Dropdown - Search Results or All Industries */}
+                {(isSearchDropdownOpen || isIndustryDropdownOpen) && (
+                  <div
+                    className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-2xl shadow-lg z-50 max-h-80 overflow-y-auto"
+                    role="listbox"
+                  >
                     <div className="p-2">
                       {(() => {
-                        const filteredIndustries = industries
-                          .filter(industry => industry.active)
-                          .filter(industry => {
-                            if (!searchQuery.trim()) return true;
-                            const query = searchQuery.toLowerCase();
-                            const name = industry.name.toLowerCase();
-                            const id = industry.id.toLowerCase();
+                        const displayIndustries = isIndustryDropdownOpen ? allIndustries : filteredIndustries;
+                        const showHeader = isIndustryDropdownOpen || (searchQuery.trim() && displayIndustries.length > 0);
 
-                            // Intelligent word matching
-                            const nameWords = name.split(/[\s&-]+/);
-                            const queryWords = query.split(/\s+/);
-
-                            // Check if any query word matches any industry word
-                            return queryWords.some(queryWord =>
-                              nameWords.some(nameWord =>
-                                nameWord.startsWith(queryWord) || nameWord.includes(queryWord)
-                              ) || name.includes(queryWord) || id.includes(queryWord)
-                            );
-                          })
-                          .sort((a, b) => {
-                            // Sort by relevance: exact matches first, then starts with, then contains
-                            const query = searchQuery.toLowerCase();
-                            const aName = a.name.toLowerCase();
-                            const bName = b.name.toLowerCase();
-
-                            const aStartsWith = aName.startsWith(query);
-                            const bStartsWith = bName.startsWith(query);
-                            const aContains = aName.includes(query);
-                            const bContains = bName.includes(query);
-
-                            // Prioritize exact word matches
-                            const aWordMatch = aName.split(/[\s&-]+/).some(word => word.startsWith(query));
-                            const bWordMatch = bName.split(/[\s&-]+/).some(word => word.startsWith(query));
-
-                            if (aWordMatch && !bWordMatch) return -1;
-                            if (!aWordMatch && bWordMatch) return 1;
-
-                            if (aStartsWith && !bStartsWith) return -1;
-                            if (!aStartsWith && bStartsWith) return 1;
-                            if (aContains && !bContains) return -1;
-                            if (!aContains && bContains) return 1;
-
-                            return a.name.localeCompare(b.name);
-                          });
-
-                        return filteredIndustries.length > 0 ? (
+                        return displayIndustries.length > 0 ? (
                           <>
-                            {searchQuery && (
-                              <div className="px-3 py-2 text-xs text-ash border-b border-ash/10 mb-2">
-                                {filteredIndustries.length} industrie{filteredIndustries.length === 1 ? 'y' : 's'} found
+                            {showHeader && (
+                              <div className="px-4 py-3 border-b border-gray-100 mb-2">
+                                <p className="text-sm text-gray-600 font-medium">
+                                  {isIndustryDropdownOpen ? "All Industries" : `${displayIndustries.length} industrie${displayIndustries.length === 1 ? 'y' : 's'} found`}
+                                </p>
                               </div>
                             )}
                             <div className="space-y-1">
-                              {filteredIndustries.slice(0, 10).map((industry) => (
+                              {displayIndustries.map((industry, index) => (
                                 <button
                                   key={industry.id}
-                                  onClick={() => {
-                                    setSelectedIndustry(industry);
-                                    setSearchQuery("");
-                                    setSearchOpen(false);
-                                  }}
-                                  className={`flex items-center gap-3 w-full p-3 rounded-lg text-left hover:bg-midnight-light/50 transition-colors group ${
-                                    selectedIndustry?.id === industry.id ? "bg-ash/10 border border-ash/20" : ""
+                                  id={`industry-${index}`}
+                                  onClick={() => handleIndustrySelect(industry)}
+                                  role="option"
+                                  aria-selected={selectedIndex === index}
+                                  className={`flex items-center gap-4 w-full px-4 py-3 text-left transition-colors duration-150 group rounded-lg ${
+                                    selectedIndex === index
+                                      ? "bg-blue-50 border border-blue-200"
+                                      : "hover:bg-gray-50"
                                   }`}
                                 >
-                                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
-                                    selectedIndustry?.id === industry.id
-                                      ? "bg-copper/20"
-                                      : "bg-midnight-light group-hover:bg-copper/10"
+                                  <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
+                                    selectedIndex === index
+                                      ? "bg-blue-100"
+                                      : "bg-gray-100 group-hover:bg-blue-50"
                                   }`}>
-                                    <industry.icon />
+                                    <industry.icon className="w-5 h-5 text-gray-600" />
                                   </div>
                                   <div className="flex-1 min-w-0">
-                                    <p className={`font-medium text-sm truncate ${
-                                      selectedIndustry?.id === industry.id ? "text-concrete" : "text-concrete"
+                                    <p className={`font-medium text-base truncate ${
+                                      selectedIndex === index ? "text-blue-900" : "text-gray-900"
                                     }`}>
-                                      {searchQuery.trim() ? highlightMatch(industry.name, searchQuery) : industry.name}
+                                      {searchQuery.trim() && !isIndustryDropdownOpen ? highlightMatch(industry.name, searchQuery) : industry.name}
                                     </p>
-                                    <p className="text-xs text-ash truncate mt-0.5">
+                                    <p className="text-sm text-gray-500 truncate mt-0.5">
                                       Specialized packaging solutions
                                     </p>
                                   </div>
-                                  {selectedIndustry?.id === industry.id && (
-                                    <div className="w-2 h-2 bg-copper rounded-full flex-shrink-0"></div>
+                                  {selectedIndex === index && (
+                                    <div className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
                                   )}
                                 </button>
                               ))}
                             </div>
                           </>
-                        ) : (
+                        ) : searchQuery.trim() && !isIndustryDropdownOpen ? (
                           <div className="text-center py-8">
-                            <Search className="w-8 h-8 text-ash mx-auto mb-3" />
-                            <p className="text-sm text-ash">
+                            <Search className="w-8 h-8 text-gray-400 mx-auto mb-3" />
+                            <p className="text-sm text-gray-500">
                               No industries found matching "{searchQuery}"
                             </p>
-                            <p className="text-xs text-ash/70 mt-1">
+                            <p className="text-xs text-gray-400 mt-1">
                               Try different keywords or browse all industries
                             </p>
                           </div>
-                        );
+                        ) : null;
                       })()}
                     </div>
                   </div>
