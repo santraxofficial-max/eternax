@@ -1,6 +1,5 @@
 'use client'
 
-import { cn } from "@/lib/utils";
 import React from 'react'
 
 export default function CubeLoader() {
@@ -16,10 +15,7 @@ export default function CubeLoader() {
           {/* Internal Core (The energy source) */}
           <div className='absolute inset-0 m-auto w-8 h-8 bg-white rounded-full blur-md shadow-[0_0_40px_rgba(255,255,255,0.8)] animate-pulse-fast' />
 
-          {/* CUBE FACES
-              We wrap each face in a 'side-wrapper' that handles the rotation (facing direction),
-              and the inner 'face' handles the breathing (expansion/contraction) animation.
-          */}
+          {/* CUBE FACES */}
 
           {/* Front */}
           <div className='side-wrapper front'>
@@ -56,8 +52,7 @@ export default function CubeLoader() {
         <div className='absolute -bottom-20 w-24 h-8 bg-black/40 blur-xl rounded-[100%] animate-shadow-breathe' />
       </div>
 
-
-      <style jsx>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .perspective-container {
           perspective: 1200px;
         }
@@ -66,20 +61,13 @@ export default function CubeLoader() {
           transform-style: preserve-3d;
         }
 
-        /* 1. Cube Spin
-          Rotates the entire assembly on X and Y axes
-        */
         @keyframes cubeSpin {
           0% { transform: rotateX(0deg) rotateY(0deg); }
           100% { transform: rotateX(360deg) rotateY(360deg); }
         }
 
-        /* 2. Face Breathing
-          Moves the face outward (translateZ) and back.
-          Since the parent (.side-wrapper) is already rotated, Z is always "outward" relative to that face.
-        */
         @keyframes breathe {
-          0%, 100% { transform: translateZ(48px); opacity: 0.8; } /* 48px is half of w-24 (96px) */
+          0%, 100% { transform: translateZ(48px); opacity: 0.8; }
           50% { transform: translateZ(80px); opacity: 0.4; border-color: rgba(255,255,255,0.8); }
         }
 
@@ -91,15 +79,6 @@ export default function CubeLoader() {
         @keyframes shadow-breathe {
             0%, 100% { transform: scale(1); opacity: 0.4; }
             50% { transform: scale(1.5); opacity: 0.2; }
-        }
-
-        @keyframes glitch {
-            0% { clip-path: inset(10% 0 80% 0); transform: translate(-2px, 1px); }
-            20% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -1px); }
-            40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
-            60% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -2px); }
-            80% { clip-path: inset(30% 0 20% 0); transform: translate(1px, 2px); }
-            100% { clip-path: inset(10% 0 80% 0); transform: translate(-2px, 1px); }
         }
 
         .animate-cube-spin {
@@ -114,11 +93,6 @@ export default function CubeLoader() {
             animation: shadow-breathe 3s ease-in-out infinite;
         }
 
-        .animate-glitch-text {
-            animation: glitch 2s infinite linear alternate-reverse;
-        }
-
-        /* Positioning the Sides */
         .side-wrapper {
           position: absolute;
           width: 100%;
@@ -133,19 +107,17 @@ export default function CubeLoader() {
           width: 100%;
           height: 100%;
           position: absolute;
-          /* The 'breathe' animation is applied here */
           animation: breathe 3s ease-in-out infinite;
           backdrop-filter: blur(2px);
         }
 
-        /* Rotations to form the cube structure */
         .front  { transform: rotateY(0deg); }
         .back   { transform: rotateY(180deg); }
         .right  { transform: rotateY(90deg); }
         .left   { transform: rotateY(-90deg); }
         .top    { transform: rotateX(90deg); }
         .bottom { transform: rotateX(-90deg); }
-      `}</style>
+      `}} />
     </div>
   )
 }
