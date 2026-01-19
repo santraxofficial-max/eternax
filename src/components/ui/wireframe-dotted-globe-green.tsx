@@ -3,6 +3,23 @@
 import { useEffect, useRef, useState } from "react"
 import * as d3 from "d3"
 
+// GeoJSON type definitions
+type GeoJsonGeometry = {
+  type: string
+  coordinates: number[][][] | number[][][][]
+}
+
+type GeoJsonFeature = {
+  type: string
+  geometry: GeoJsonGeometry
+  properties?: Record<string, unknown>
+}
+
+type GeoJsonFeatureCollection = {
+  type: string
+  features: GeoJsonFeature[]
+}
+
 interface RotatingEarthGreenProps {
   width?: number
   height?: number
@@ -58,7 +75,7 @@ export default function RotatingEarthGreen({ width = 800, height = 600, classNam
       return inside
     }
 
-    const pointInFeature = (point: [number, number], feature: any): boolean => {
+    const pointInFeature = (point: [number, number], feature: GeoJsonFeature): boolean => {
       const geometry = feature.geometry
 
       if (geometry.type === "Polygon") {
@@ -98,7 +115,7 @@ export default function RotatingEarthGreen({ width = 800, height = 600, classNam
       return false
     }
 
-    const generateDotsInPolygon = (feature: any, dotSpacing = 16) => {
+    const generateDotsInPolygon = (feature: GeoJsonFeature, dotSpacing = 16) => {
       const dots: [number, number][] = []
       const bounds = d3.geoBounds(feature)
       const [[minLng, minLat], [maxLng, maxLat]] = bounds
@@ -130,7 +147,7 @@ export default function RotatingEarthGreen({ width = 800, height = 600, classNam
     }
 
     const allDots: DotData[] = []
-    let landFeatures: any
+    let landFeatures: GeoJsonFeatureCollection
 
     const render = () => {
       // Clear canvas
@@ -159,7 +176,7 @@ export default function RotatingEarthGreen({ width = 800, height = 600, classNam
 
         // Draw land outlines
         context.beginPath()
-        landFeatures.features.forEach((feature: any) => {
+        landFeatures.features.forEach((feature: GeoJsonFeature) => {
           path(feature)
         })
         context.strokeStyle = "#22c55e" // Green color for land outlines
@@ -198,7 +215,7 @@ export default function RotatingEarthGreen({ width = 800, height = 600, classNam
 
         // Generate dots for all land features
         let totalDots = 0
-        landFeatures.features.forEach((feature: any) => {
+        landFeatures.features.forEach((feature: GeoJsonFeature) => {
           const dots = generateDotsInPolygon(feature, 16)
           dots.forEach(([lng, lat]) => {
             allDots.push({ lng, lat, visible: true })

@@ -30,19 +30,46 @@ interface ShinyButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   className?: string;
+  animated?: boolean;
 }
 
 export const ShinyButton: React.FC<ShinyButtonProps> = ({
   children,
   className,
+  onClick,
+  animated = true,
   ...props
 }) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (onClick) {
+      onClick(event);
+    }
+  };
+
+  if (!animated) {
+    return (
+      <button
+        {...props}
+        onClick={handleClick}
+        className={cn(
+          "relative rounded-lg px-6 py-2 font-medium backdrop-blur-xl dark:bg-[radial-gradient(circle_at_50%_0%,hsl(var(--primary)/10%)_0%,transparent_60%)]",
+          className
+        )}
+      >
+        <span className="relative block size-full text-sm uppercase tracking-wide text-[rgb(0,0,0,65%)] dark:font-light dark:text-[rgb(255,255,255,90%)]">
+          {children}
+        </span>
+      </button>
+    );
+  }
+
   return (
     <motion.button
       {...animationProps}
       {...props}
+      onClick={handleClick}
       className={cn(
-        "relative rounded-lg px-6 py-2 font-medium backdrop-blur-xl transition-shadow duration-300 ease-in-out hover:shadow border-2 border-transparent dark:bg-[radial-gradient(circle_at_50%_0%,hsl(var(--primary)/10%)_0%,transparent_60%)] dark:hover:shadow-[0_0_20px_hsl(var(--primary)/10%)] dark:border-[#D2691E]/50 dark:shadow-[0_0_15px_rgba(210,105,30,0.3),0_0_30px_rgba(205,133,63,0.2),0_0_45px_rgba(160,82,45,0.1)] hover:dark:shadow-[0_0_20px_rgba(210,105,30,0.5),0_0_40px_rgba(205,133,63,0.3),0_0_60px_rgba(160,82,45,0.2)]",
+        "relative rounded-lg px-6 py-2 font-medium backdrop-blur-xl dark:bg-[radial-gradient(circle_at_50%_0%,hsl(var(--primary)/10%)_0%,transparent_60%)]",
         className
       )}
     >

@@ -4,7 +4,7 @@ import { FloatingIcons } from "@/components/ui/floating-icons";
 
 export const Header = () => {
   const location = useLocation();
-  const isOnboarding = location.pathname === "/start-project";
+  const isOnboarding = location.pathname === "/start-project" || location.pathname === "/onboarding";
 
   return (
     <>

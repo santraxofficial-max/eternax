@@ -50,8 +50,8 @@ export const PackagingQualitySection = () => {
               >
                 <Shield className="w-5 h-5 text-green-600 flex-shrink-0" />
                 <div>
-                  <h4 className="font-medium text-slate-900 dark:text-white text-sm">Food-Safe Materials</h4>
-                  <p className="text-slate-600 dark:text-slate-400 text-xs">Certified for direct food contact</p>
+                  <h4 className="font-medium text-slate-900 dark:text-white text-sm">Garment-Safe Materials</h4>
+                  <p className="text-slate-600 dark:text-slate-400 text-xs">Gentle on fabrics and finishes</p>
                 </div>
               </motion.div>
 
@@ -166,8 +166,8 @@ export const PackagingQualitySection = () => {
             >
               <div className="text-center">
                 <div className="text-xl font-bold text-green-600 mb-1">99.9%</div>
-                <div className="text-slate-600 dark:text-slate-400 text-sm">Food Safety Rating</div>
-                <div className="text-xs text-slate-500 dark:text-slate-500 mt-1">FDA & EU Certified</div>
+                <div className="text-slate-600 dark:text-slate-400 text-sm">Fashion Protection Rating</div>
+                <div className="text-xs text-slate-500 dark:text-slate-500 mt-1">Garment Care Certified</div>
               </div>
             </motion.div>
 
@@ -234,8 +234,8 @@ export const PackagingQualitySection = () => {
             >
               <div className="w-3 h-3 bg-orange-500 rounded-full flex-shrink-0"></div>
               <div>
-                <div className="text-sm font-medium text-slate-900 dark:text-white">Load Capacity</div>
-                <div className="text-xs text-slate-600 dark:text-slate-400">Up to 500kg</div>
+                <div className="text-sm font-medium text-slate-900 dark:text-white">Garment Capacity</div>
+                <div className="text-xs text-slate-600 dark:text-slate-400">Up to 50 garments</div>
               </div>
             </motion.div>
 

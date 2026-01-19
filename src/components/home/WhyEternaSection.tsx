@@ -28,10 +28,10 @@ export const WhyEternaSection = () => {
               The Problem
             </span>
             <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-concrete leading-tight">
-              The future of food won't be packaged in plastic.
+              The future of fashion won't be packaged in plastic.
             </h2>
             <p className="mt-6 text-lg text-concrete-muted leading-relaxed">
-              Consumers demand sustainability. Regulations are tightening. Your
+              Fashion consumers demand sustainability. Regulations are tightening. Your
               competitors are already switching. The question isn't whether to go
               sustainable—it's how fast you can get there.
             </p>
@@ -93,7 +93,7 @@ export const WhyEternaSection = () => {
               
               <p className="mt-4 text-concrete-muted leading-relaxed">
                 We manufacture premium, biodegradable packaging that doesn't just
-                meet regulations—it exceeds customer expectations and sets you
+                meet regulations—it exceeds fashion consumer expectations and sets you
                 apart from competitors still stuck in the past.
               </p>
 

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ShinyButton } from "@/components/ui/shiny-button";
+import { cn } from "@/lib/utils";
 
 export const HeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -40,7 +41,7 @@ export const HeroSection = () => {
             transition={{ duration: 1, delay: 0.6 }}
             className="mt-8 md:mt-10 max-w-2xl mx-auto text-lg md:text-xl text-concrete-muted leading-relaxed text-center"
           >
-            Partnering with brands to elevate packaging to contemporary sustainability standards.
+            Partnering exclusively with clothing and fashion brands to elevate packaging to contemporary sustainability standards.
           </motion.p>
 
 
@@ -51,7 +52,7 @@ export const HeroSection = () => {
             transition={{ duration: 1, delay: 1 }}
             className="mt-12 md:mt-16 flex justify-center"
           >
-            <Link to="/start-project">
+            <Link to="/onboarding" className="block">
               <ShinyButton className="px-8 py-4 text-lg font-semibold">
                 Design Your Packaging
               </ShinyButton>

@@ -13,20 +13,20 @@ import {
 
 const features: BentoItem[] = [
     {
-        title: "Custom Food Packaging Design",
-        meta: "From concept to shelf",
+        title: "Custom Fashion Packaging Design",
+        meta: "From concept to closet",
         description:
-            "Complete packaging solutions tailored for food brands. We design packaging that protects products while telling your unique story.",
+            "Complete packaging solutions tailored for fashion brands. We design packaging that protects garments while enhancing your brand story.",
         icon: <Palette className="w-4 h-4 text-ash-dark" />,
         status: "Live",
-        tags: ["Design", "Branding", "Food-Safe"],
+        tags: ["Design", "Branding", "Fashion-Ready"],
         colSpan: 2,
         hasPersistentHover: true,
     },
     {
         title: "Sustainable Materials",
         meta: "Planet-friendly options",
-        description: "Biodegradable, recyclable materials that maintain food safety while reducing environmental impact.",
+        description: "Biodegradable, recyclable materials that protect fashion items while reducing environmental impact and plastic pollution.",
         icon: <Leaf className="w-4 h-4 text-ash-dark" />,
         status: "Premium",
         tags: ["Eco-Friendly", "Biodegradable"],
@@ -34,31 +34,31 @@ const features: BentoItem[] = [
     {
         title: "Direct Manufacturing",
         meta: "No middlemen, faster delivery",
-        description: "We manufacture in-house, ensuring quality control, competitive pricing, and faster turnaround times.",
+        description: "We manufacture in-house, ensuring quality control, competitive pricing, and faster turnaround times for fashion packaging.",
         icon: <Factory className="w-4 h-4 text-ash-dark" />,
         tags: ["Manufacturing", "Quality", "Speed"],
         colSpan: 2,
     },
     {
-        title: "Food Safety Compliance",
-        meta: "FDA & Global standards",
-        description: "All packaging meets stringent food safety regulations and international quality standards.",
+        title: "Fashion Industry Standards",
+        meta: "Quality & durability",
+        description: "All packaging meets fashion industry standards for garment protection and international sustainability certifications.",
         icon: <Shield className="w-4 h-4 text-ash-dark" />,
         status: "Certified",
-        tags: ["FDA", "Safety", "Compliance"],
+        tags: ["Quality", "Protection", "Compliance"],
     },
     {
         title: "Rapid Prototyping",
         meta: "Quick iterations",
-        description: "Fast-track your packaging development with our rapid prototyping and testing services.",
+        description: "Fast-track your fashion packaging development with our rapid prototyping and testing services.",
         icon: <Zap className="w-4 h-4 text-ash-dark" />,
         status: "Express",
         tags: ["Prototyping", "Testing", "Speed"],
     },
     {
-        title: "Brand Partnership",
+        title: "Fashion Brand Partnership",
         meta: "End-to-end support",
-        description: "From initial consultation to market launch, we're your dedicated packaging partner.",
+        description: "From initial consultation to market launch, we're your dedicated fashion packaging partner.",
         icon: <Users className="w-4 h-4 text-ash-dark" />,
         tags: ["Consulting", "Support", "Partnership"],
     },
@@ -85,8 +85,8 @@ export const WhatWeDoSection = () => {
             Built different. Built better.
           </h2>
           <p className="mt-4 text-concrete-muted max-w-2xl mx-auto">
-            We don't sell boxes from a catalog. We engineer packaging solutions
-            that grow with your brand.
+            We don't sell generic packaging from a catalog. We engineer fashion-forward solutions
+            that elevate your brand and reduce your environmental footprint.
           </p>
         </motion.div>
 

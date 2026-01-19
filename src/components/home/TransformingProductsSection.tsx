@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState, useMemo, useEffect, useCallback } from "react";
 import { Search, ChevronDown, Package, ArrowRight, Building2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ShinyButton } from "@/components/ui/shiny-button";
 import {
   Popover,
   PopoverContent,
@@ -25,48 +26,44 @@ interface Industry {
 }
 
 const industries: Industry[] = [
-  { id: "food-beverage", name: "Food & Beverage", icon: IndustryIcons["Food & Beverage"], active: true },
-  { id: "fmcg", name: "FMCG / D2C Consumer Brands", icon: IndustryIcons["FMCG / D2C Consumer Brands"], active: true },
-  { id: "hospitality", name: "Hospitality", icon: IndustryIcons["Hospitality"], active: true },
-  { id: "cosmetics", name: "Cosmetics & Personal Care", icon: IndustryIcons["Cosmetics & Personal Care"], active: true },
-  { id: "pharmaceutical", name: "Pharmaceutical & Wellness", icon: IndustryIcons["Pharmaceutical & Wellness"], active: true },
-  { id: "luxury", name: "Luxury & Lifestyle Brands", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
-  { id: "ecommerce", name: "E-commerce & Logistics", icon: IndustryIcons["E-commerce & Logistics"], active: true },
-  { id: "retail", name: "Retail Chains & Supermarkets", icon: IndustryIcons["Retail Chains & Supermarkets"], active: true },
-  { id: "corporate", name: "Corporate & B2B Gifting", icon: IndustryIcons["Corporate & B2B Gifting"], active: true },
-  { id: "agriculture", name: "Agriculture & Agri-tech", icon: IndustryIcons["Agriculture & Agri-tech"], active: true },
-  { id: "healthcare", name: "Healthcare & Medical (Non-invasive)", icon: IndustryIcons["Healthcare & Medical (Non-invasive)"], active: true },
-  { id: "electronics", name: "Electronics & Hardware", icon: IndustryIcons["Electronics & Hardware"], active: true },
+  { id: "ready-to-wear", name: "Ready-to-Wear", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
+  { id: "luxury-fashion", name: "Luxury Fashion", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
+  { id: "streetwear", name: "Streetwear", icon: IndustryIcons["FMCG / D2C Consumer Brands"], active: true },
+  { id: "accessories", name: "Accessories", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
+  { id: "footwear", name: "Footwear", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
+  { id: "denim-casual", name: "Denim & Casual", icon: IndustryIcons["FMCG / D2C Consumer Brands"], active: true },
+  { id: "athleisure", name: "Athleisure", icon: IndustryIcons["FMCG / D2C Consumer Brands"], active: true },
+  { id: "sustainable-fashion", name: "Sustainable Fashion", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
 ];
 
 // Mock products data - replace with actual data later
 const mockProducts = [
   {
     id: "1",
-    name: "Eco-Friendly Takeout Boxes",
-    description: "Sustainable cardboard boxes perfect for food delivery",
-    industries: ["food-beverage", "fmcg"],
+    name: "Biodegradable Garment Bags",
+    description: "Sustainable garment bags that protect clothing while reducing plastic waste",
+    industries: ["ready-to-wear", "luxury-fashion", "denim-casual"],
     image: "/api/placeholder/300/200"
   },
   {
     id: "2",
-    name: "Biodegradable Retail Bags",
-    description: "Sturdy shopping bags made from recycled materials",
-    industries: ["retail", "ecommerce", "fmcg"],
+    name: "Eco-Luxury Shoe Boxes",
+    description: "Premium shoe packaging made from recycled and biodegradable materials",
+    industries: ["footwear", "luxury-fashion", "accessories"],
     image: "/api/placeholder/300/200"
   },
   {
     id: "3",
-    name: "Luxury Product Packaging",
-    description: "Elegant boxes for premium brands and products",
-    industries: ["luxury", "cosmetics", "corporate"],
+    name: "Sustainable Accessory Packaging",
+    description: "Elegant, minimal packaging for jewelry, bags, and fashion accessories",
+    industries: ["accessories", "luxury-fashion", "streetwear"],
     image: "/api/placeholder/300/200"
   },
   {
     id: "4",
-    name: "Medical Supply Containers",
-    description: "Sterile and durable packaging for healthcare products",
-    industries: ["healthcare", "pharmaceutical"],
+    name: "Streetwear Bundle Packaging",
+    description: "Urban-inspired packaging solutions for streetwear and athleisure brands",
+    industries: ["streetwear", "athleisure", "sustainable-fashion"],
     image: "/api/placeholder/300/200"
   }
 ];
@@ -226,7 +223,7 @@ export const TransformingProductsSection = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-concrete mb-4">
-            Transforming Products for Your Business
+            Sustainable Fashion Packaging Solutions
           </h2>
         </motion.div>
 
@@ -243,7 +240,7 @@ export const TransformingProductsSection = () => {
                 Find Your Perfect Packaging Solution
               </h3>
               <p className="text-ash text-sm">
-                Select your industry to discover tailored sustainable packaging options
+                Select your fashion segment to discover tailored sustainable packaging options
               </p>
             </div>
 
@@ -260,7 +257,7 @@ export const TransformingProductsSection = () => {
                     <input
                       ref={searchInputRef}
                       type="text"
-                      placeholder={selectedIndustry ? `${selectedIndustry.name} - Click to search or change...` : "Search for your industry..."}
+                      placeholder={selectedIndustry ? `${selectedIndustry.name} - Click to search or change...` : "Search for your fashion segment..."}
                       value={searchQuery}
                       onChange={(e) => {
                         setSearchQuery(e.target.value);
@@ -329,7 +326,7 @@ export const TransformingProductsSection = () => {
                             {showHeader && (
                               <div className="px-4 py-3 border-b border-gray-100 mb-2">
                                 <p className="text-sm text-gray-600 font-medium">
-                                  {isIndustryDropdownOpen ? "All Industries" : `${displayIndustries.length} industrie${displayIndustries.length === 1 ? 'y' : 's'} found`}
+                                  {isIndustryDropdownOpen ? "All Fashion Segments" : `${displayIndustries.length} fashion segment${displayIndustries.length === 1 ? '' : 's'} found`}
                                 </p>
                               </div>
                             )}
@@ -361,7 +358,7 @@ export const TransformingProductsSection = () => {
                                       {searchQuery.trim() && !isIndustryDropdownOpen ? highlightMatch(industry.name, searchQuery) : industry.name}
                                     </p>
                                     <p className="text-sm text-gray-500 truncate mt-0.5">
-                                      Specialized packaging solutions
+                                      Sustainable fashion packaging solutions
                                     </p>
                                   </div>
                                   {selectedIndex === index && (
@@ -378,7 +375,7 @@ export const TransformingProductsSection = () => {
                               No industries found matching "{searchQuery}"
                             </p>
                             <p className="text-xs text-gray-400 mt-1">
-                              Try different keywords or browse all industries
+                              Try different keywords or browse all fashion segments
                             </p>
                           </div>
                         ) : null;
@@ -442,14 +439,10 @@ export const TransformingProductsSection = () => {
                               <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                               <span className="text-xs text-green-400 font-medium">Sustainable</span>
                             </div>
-                            <Button
-                              variant="copper"
-                              size="sm"
-                              className="group/btn"
-                            >
+                            <ShinyButton className="px-4 py-2 text-sm font-medium group/btn">
                               Explore
                               <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
-                            </Button>
+                            </ShinyButton>
                           </div>
                         </div>
                       </div>
@@ -475,9 +468,9 @@ export const TransformingProductsSection = () => {
                     We're currently developing specialized packaging solutions for your industry.
                     Our team is working on products that perfectly match your business needs.
                   </p>
-                  <Button variant="outline" className="mt-6 border-ash/20 text-ash hover:border-copper hover:text-copper">
+                  <ShinyButton className="mt-6 px-6 py-3">
                     Get Notified When Available
-                  </Button>
+                  </ShinyButton>
                 </motion.div>
               )}
             </motion.div>

@@ -5,52 +5,36 @@ import { IndustryIcons } from "@/components/ui/industry-icons";
 
 const industries = [
   {
-    name: "FOOD & BEV",
-    icon: IndustryIcons["Food & Beverage"],
-  },
-  {
-    name: "FMCG/D2C",
-    icon: IndustryIcons["FMCG / D2C Consumer Brands"],
-  },
-  {
-    name: "HOSPITALITY",
-    icon: IndustryIcons["Hospitality"],
-  },
-  {
-    name: "BEAUTY & CARE",
-    icon: IndustryIcons["Cosmetics & Personal Care"],
-  },
-  {
-    name: "PHARMA & WELLNESS",
-    icon: IndustryIcons["Pharmaceutical & Wellness"],
-  },
-  {
-    name: "LUXURY BRANDS",
+    name: "READY-TO-WEAR",
     icon: IndustryIcons["Luxury & Lifestyle Brands"],
   },
   {
-    name: "E-COMMERCE",
-    icon: IndustryIcons["E-commerce & Logistics"],
+    name: "LUXURY FASHION",
+    icon: IndustryIcons["Luxury & Lifestyle Brands"],
   },
   {
-    name: "RETAIL",
-    icon: IndustryIcons["Retail Chains & Supermarkets"],
+    name: "STREETWEAR",
+    icon: IndustryIcons["FMCG / D2C Consumer Brands"],
   },
   {
-    name: "CORPORATE",
-    icon: IndustryIcons["Corporate & B2B Gifting"],
+    name: "ACCESSORIES",
+    icon: IndustryIcons["Luxury & Lifestyle Brands"],
   },
   {
-    name: "AGRICULTURE",
-    icon: IndustryIcons["Agriculture & Agri-tech"],
+    name: "FOOTWEAR",
+    icon: IndustryIcons["Luxury & Lifestyle Brands"],
   },
   {
-    name: "HEALTHCARE",
-    icon: IndustryIcons["Healthcare & Medical (Non-invasive)"],
+    name: "DENIM & CASUAL",
+    icon: IndustryIcons["FMCG / D2C Consumer Brands"],
   },
   {
-    name: "ELECTRONICS",
-    icon: IndustryIcons["Electronics & Hardware"],
+    name: "ATHLEISURE",
+    icon: IndustryIcons["FMCG / D2C Consumer Brands"],
+  },
+  {
+    name: "SUSTAINABLE FASHION",
+    icon: IndustryIcons["Luxury & Lifestyle Brands"],
   },
 ];
 
@@ -68,10 +52,10 @@ export const IndustrySection = () => {
           className="text-center mb-6"
         >
           <span className="text-copper text-sm font-medium uppercase tracking-wider">
-            We work with
+            Fashion segments we serve
           </span>
           <h2 className="mt-2 text-2xl md:text-3xl font-bold text-foreground">
-            Leading Industries
+            Clothing & Fashion Industry
           </h2>
         </motion.div>
 

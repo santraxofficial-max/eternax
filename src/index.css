@@ -155,8 +155,13 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply text-foreground antialiased;
     font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    background-color: hsl(var(--background));
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255, 140, 100, 0.08) 0px, rgba(255, 140, 100, 0.08) 1px, transparent 1px, transparent 80px),
+      repeating-linear-gradient(90deg, rgba(255, 140, 100, 0.08) 0px, rgba(255, 140, 100, 0.08) 1px, transparent 1px, transparent 80px);
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 {

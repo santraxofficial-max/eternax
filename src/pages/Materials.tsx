@@ -8,9 +8,9 @@ import { Button } from "@/components/ui/button";
 const principles = [
   {
     icon: Shield,
-    title: "Food-Safe First",
+    title: "Garment-Safe First",
     description:
-      "Every material we use is certified for direct food contact. No exceptions. Your customers trust your product—we ensure the packaging is equally trustworthy.",
+      "Every material we use is certified for garment protection. No exceptions. Your customers trust your fashion—we ensure the packaging preserves quality and finish.",
   },
   {
     icon: Leaf,
@@ -28,29 +28,29 @@ const principles = [
     icon: Award,
     title: "Performance Without Compromise",
     description:
-      "Sustainable doesn't mean weak. Our materials handle heat, cold, grease, moisture, and stacking—everything your product demands.",
+      "Sustainable doesn't mean weak. Our materials handle moisture, dust, stacking, and transport—everything your fashion pieces demand.",
   },
 ];
 
 const materials = [
   {
     name: "Sugarcane Bagasse",
-    best_for: "Hot foods, oily dishes, high-volume restaurants",
-    properties: ["Heat resistant", "Grease resistant", "Fully compostable"],
+    best_for: "Luxury garment bags, premium shoe boxes, high-end fashion",
+    properties: ["Shape retention", "Moisture resistant", "Fully compostable"],
   },
   {
     name: "Kraft Paper",
-    best_for: "Bakery items, dry goods, premium presentations",
-    properties: ["Food-safe coatings", "Excellent printability", "Recyclable"],
+    best_for: "Accessory cases, shopping bags, premium presentations",
+    properties: ["Fabric-safe coatings", "Excellent printability", "Recyclable"],
   },
   {
     name: "Bamboo Fiber",
-    best_for: "Premium packaging, eco-conscious brands",
+    best_for: "Premium packaging, sustainable fashion brands",
     properties: ["Naturally antibacterial", "Rapid renewal", "Elegant texture"],
   },
   {
     name: "Cornstarch Blend",
-    best_for: "Cold beverages, salads, transparent applications",
+    best_for: "Transparent cases, accessory displays, fashion applications",
     properties: ["Clear appearance", "Oil resistant", "Industrial compostable"],
   },
   {
@@ -94,7 +94,7 @@ const Materials = () => {
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
               Our materials are chosen not just for sustainability claims—but for
               real-world performance. Every option is vetted, tested, and proven
-              in actual food service conditions.
+              in actual fashion retail conditions.
             </p>
           </motion.div>
         </div>
@@ -207,7 +207,7 @@ const Materials = () => {
               Meeting the highest standards.
             </h2>
             <p className="mt-6 text-muted-foreground leading-relaxed">
-              Our materials and processes are certified for food safety,
+              Our materials and processes are certified for garment safety,
               biodegradability, and environmental compliance. For ESG reporting,
               procurement requirements, or regulatory needs—we provide full
               documentation.

@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { MessageSquare, PenTool, PackageCheck, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { ShinyButton } from "@/components/ui/shiny-button";
 
 const steps = [
   {
@@ -99,10 +99,10 @@ export const ProcessSection = () => {
           className="mt-16 text-center"
         >
           <Link to="/start-project">
-            <Button variant="copper" size="xl" className="group">
+            <ShinyButton className="px-8 py-4 text-lg font-semibold group">
               Start Your Project Today
-              <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
-            </Button>
+              <ArrowRight size={20} className="transition-transform group-hover:translate-x-1 ml-2" />
+            </ShinyButton>
           </Link>
         </motion.div>
       </div>

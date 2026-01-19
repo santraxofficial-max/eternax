@@ -8,20 +8,20 @@ const steps = [
   {
     number: "01",
     icon: Building2,
-    title: "Industry Selection",
-    description: "Choose your business sector to get tailored packaging recommendations and product categories that match your industry needs."
+    title: "Fashion Segment Selection",
+    description: "Choose your fashion category—ready-to-wear, luxury, streetwear, or accessories—to get tailored packaging solutions that match your brand's style and target market."
   },
   {
     number: "02",
     icon: Package,
-    title: "Product Selection",
-    description: "Select the specific products that require sustainable packaging solutions from our curated collection of eco-friendly options."
+    title: "Garment Collection Selection",
+    description: "Select specific clothing items from your collection that need sustainable packaging—from t-shirts and dresses to shoes and accessories."
   },
   {
     number: "03",
     icon: Palette,
-    title: "Custom Design",
-    description: "Design and customize your packaging to perfectly align with your brand identity, colors, and messaging requirements."
+    title: "Brand-Aligned Design",
+    description: "Design packaging that complements your fashion aesthetic, incorporates your brand colors, and communicates your sustainability story to conscious consumers."
   }
 ];
 
@@ -55,7 +55,7 @@ export const OurProcedureSection = () => {
             Simple. Straightforward. Sustainable.
           </h2>
           <p className="text-concrete-muted max-w-2xl mx-auto text-lg">
-            Transform your packaging in just three easy steps. We handle the complexity while you focus on your business.
+            Transform your fashion packaging in just three easy steps. We handle the sustainability complexity while you focus on your creative vision.
           </p>
         </motion.div>
 

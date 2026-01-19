@@ -8,44 +8,44 @@ import { Button } from "@/components/ui/button";
 const capabilities = [
   {
     icon: Package,
-    title: "Custom Food Containers",
+    title: "Garment Bags & Hangers",
     description:
-      "From single-portion to family-size. Leak-proof, grease-resistant, and designed to keep your food exactly as intended—hot, cold, or anywhere in between.",
-    features: ["Moisture barriers", "Temperature retention", "Stackable designs"],
+      "From individual pieces to complete collections. Our garment bags protect fabrics, maintain shape, and create that premium first impression your fashion deserves.",
+    features: ["Fabric protection", "Shape retention", "Brand integration"],
   },
   {
     icon: Box,
-    title: "Premium Takeaway Boxes",
+    title: "Luxury Shoe Boxes",
     description:
-      "The moment your customer receives their order is a brand moment. Our boxes are engineered for that first impression—sturdy, presentable, memorable.",
-    features: ["Custom closures", "Ventilation options", "Brand finishing"],
+      "The moment your customer receives their shoes is a brand moment. Our boxes are engineered for that first impression—sturdy, elegant, unforgettable.",
+    features: ["Custom closures", "Dust protection", "Brand finishing"],
   },
   {
     icon: Coffee,
-    title: "Cups & Beverage Containers",
+    title: "Accessory Cases & Organizers",
     description:
-      "Hot coffee. Cold smoothies. Soups. Each beverage has unique demands. We build containers that handle the temperature, the condensation, and the experience.",
-    features: ["Double-wall insulation", "Leak-proof lids", "Sleeve integration"],
+      "Jewelry, belts, scarves, and more. Each accessory has unique protection needs. We build cases that preserve value and enhance the luxury experience.",
+    features: ["Padded interiors", "Secure closures", "Display integration"],
   },
   {
     icon: Utensils,
-    title: "Cutlery & Accessories",
+    title: "Tissue Paper & Inserts",
     description:
-      "Forks, spoons, knives, and beyond. Strong enough for any meal, refined enough for any brand. No flimsy alternatives—just proper tools.",
-    features: ["Heavy-duty strength", "Embossing options", "Full combo sets"],
+      "Premium tissue, ribbons, and protective inserts. Refined enough for luxury brands, functional enough for everyday fashion. No compromises.",
+    features: ["Luxury textures", "Color matching", "Custom patterns"],
   },
   {
     icon: ShoppingBag,
-    title: "Carry Bags",
+    title: "Shopping & Carry Bags",
     description:
-      "The journey from kitchen to customer. Our bags handle the weight, maintain temperature, and arrive looking like your brand intended.",
-    features: ["Reinforced handles", "Insulated linings", "Custom printing"],
+      "The journey from boutique to home. Our bags handle the weight of fashion purchases and arrive looking like the premium brands they represent.",
+    features: ["Reinforced handles", "Brand printing", "Size options"],
   },
   {
     icon: Gift,
-    title: "Secondary & Gift Packaging",
+    title: "Gift & Presentation Packaging",
     description:
-      "Unboxing is a ritual. For premium products, gift sets, or special occasions—we create packaging that makes the experience unforgettable.",
+      "Unboxing fashion is a ritual. For luxury items, collections, or special pieces—we create packaging that makes the experience unforgettable.",
     features: ["Magnetic closures", "Tissue integration", "Premium finishes"],
   },
 ];
