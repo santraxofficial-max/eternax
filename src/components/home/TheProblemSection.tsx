@@ -91,7 +91,7 @@ export const TheProblemSection = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="text-lg text-muted-foreground leading-relaxed"
             >
-              The fashion industry's packaging practices are a major contributor to environmental damage and brand reputation risk.
+              Luxury apparel packaging practices are a major contributor to environmental damage and brand reputation risk.
             </motion.div>
 
             {/* Statistics Card */}
@@ -111,7 +111,7 @@ export const TheProblemSection = () => {
                     {plasticCount}%
                   </div>
                   <p className="text-sm text-muted-foreground">
-                    of fashion packaging contributes to plastic pollution
+                    of luxury apparel packaging contributes to plastic pollution
                   </p>
                 </div>
               </div>
@@ -126,7 +126,7 @@ export const TheProblemSection = () => {
             >
               <h3 className="text-xl font-semibold text-destructive flex items-center gap-2">
                 <AlertTriangle className="w-5 h-5" />
-                Fashion Industry Impact
+                Luxury Apparel Impact
               </h3>
               <div className="space-y-3">
                 <motion.div
@@ -145,7 +145,7 @@ export const TheProblemSection = () => {
                   className="flex items-center gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
                 >
                   <Mountain className="w-5 h-5 text-green-600" />
-                  <span className="text-sm">Fast fashion waste degrades ecosystems</span>
+                  <span className="text-sm">Overproduction waste degrades ecosystems</span>
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
@@ -168,7 +168,7 @@ export const TheProblemSection = () => {
             >
               <h3 className="text-xl font-semibold text-destructive flex items-center gap-2">
                 <Shield className="w-5 h-5" />
-                Fashion Brand Risks
+                Luxury Brand Risks
               </h3>
               <div className="space-y-3">
                 <motion.div
@@ -187,7 +187,7 @@ export const TheProblemSection = () => {
                   className="flex items-center gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
                 >
                   <Users className="w-5 h-5 text-orange-500" />
-                  <span className="text-sm">Gen Z consumers demanding sustainable fashion packaging</span>
+                  <span className="text-sm">Luxury buyers demanding sustainable packaging</span>
                 </motion.div>
               </div>
             </motion.div>
@@ -199,7 +199,7 @@ export const TheProblemSection = () => {
               transition={{ duration: 0.6, delay: 2.4 }}
               className="text-base text-muted-foreground leading-relaxed border-l-4 border-destructive pl-4 italic"
             >
-              Traditional fashion packaging is becoming a liability in an era where consumers demand sustainable practices from their favorite brands.
+              Traditional luxury apparel packaging is becoming a liability in an era where consumers demand sustainable practices from their favorite brands.
             </motion.div>
           </motion.div>
         </div>

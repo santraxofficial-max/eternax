@@ -42,7 +42,7 @@ export const TeamSection = () => {
   return (
     <NewTeamSection
       title="BUILDERS BEHIND ETERNA"
-      description="Meet the visionary leaders driving innovation in sustainable packaging solutions. Our experienced team combines deep industry knowledge with cutting-edge technology to revolutionize fashion packaging for a better tomorrow."
+      description="Meet the visionary leaders driving innovation in sustainable packaging solutions. Our experienced team combines deep industry knowledge with cutting-edge technology to revolutionize luxury apparel packaging for a better tomorrow."
       members={teamMembers}
       socialLinksMain={mainSocialLinks}
     />

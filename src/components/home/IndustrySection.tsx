@@ -5,35 +5,35 @@ import { IndustryIcons } from "@/components/ui/industry-icons";
 
 const industries = [
   {
-    name: "READY-TO-WEAR",
+    name: "LUXURY SHIRTS",
     icon: IndustryIcons["Luxury & Lifestyle Brands"],
   },
   {
-    name: "LUXURY FASHION",
+    name: "TAILORED SUITS",
     icon: IndustryIcons["Luxury & Lifestyle Brands"],
   },
   {
-    name: "STREETWEAR",
-    icon: IndustryIcons["FMCG / D2C Consumer Brands"],
-  },
-  {
-    name: "ACCESSORIES",
+    name: "EVENING GOWNS",
     icon: IndustryIcons["Luxury & Lifestyle Brands"],
   },
   {
-    name: "FOOTWEAR",
+    name: "DESIGNER OUTERWEAR",
     icon: IndustryIcons["Luxury & Lifestyle Brands"],
   },
   {
-    name: "DENIM & CASUAL",
-    icon: IndustryIcons["FMCG / D2C Consumer Brands"],
+    name: "CASHMERE KNITWEAR",
+    icon: IndustryIcons["Luxury & Lifestyle Brands"],
   },
   {
-    name: "ATHLEISURE",
-    icon: IndustryIcons["FMCG / D2C Consumer Brands"],
+    name: "LUXURY FOOTWEAR",
+    icon: IndustryIcons["Luxury & Lifestyle Brands"],
   },
   {
-    name: "SUSTAINABLE FASHION",
+    name: "PREMIUM HANDBAGS",
+    icon: IndustryIcons["Luxury & Lifestyle Brands"],
+  },
+  {
+    name: "FINE ACCESSORIES",
     icon: IndustryIcons["Luxury & Lifestyle Brands"],
   },
 ];
@@ -52,10 +52,10 @@ export const IndustrySection = () => {
           className="text-center mb-6"
         >
           <span className="text-copper text-sm font-medium uppercase tracking-wider">
-            Fashion segments we serve
+            Luxury apparel products we serve
           </span>
           <h2 className="mt-2 text-2xl md:text-3xl font-bold text-foreground">
-            Clothing & Fashion Industry
+            Luxury Apparel Packaging
           </h2>
         </motion.div>
 
@@ -63,7 +63,7 @@ export const IndustrySection = () => {
         <div className="relative mx-auto w-full">
           {/* Top border */}
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-copper/30 to-transparent" />
-          
+
           <div className="py-6 overflow-hidden">
             <InfiniteSlider gap={48} duration={40} durationOnHover={80} reverse>
               {industries.map((industry) => {

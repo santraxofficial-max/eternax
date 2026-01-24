@@ -26,44 +26,44 @@ interface Industry {
 }
 
 const industries: Industry[] = [
-  { id: "ready-to-wear", name: "Ready-to-Wear", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
-  { id: "luxury-fashion", name: "Luxury Fashion", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
-  { id: "streetwear", name: "Streetwear", icon: IndustryIcons["FMCG / D2C Consumer Brands"], active: true },
-  { id: "accessories", name: "Accessories", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
-  { id: "footwear", name: "Footwear", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
-  { id: "denim-casual", name: "Denim & Casual", icon: IndustryIcons["FMCG / D2C Consumer Brands"], active: true },
-  { id: "athleisure", name: "Athleisure", icon: IndustryIcons["FMCG / D2C Consumer Brands"], active: true },
-  { id: "sustainable-fashion", name: "Sustainable Fashion", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
+  { id: "luxury-shirts", name: "Luxury Shirts", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
+  { id: "tailored-suits", name: "Tailored Suits", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
+  { id: "evening-dresses", name: "Evening Dresses", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
+  { id: "designer-outerwear", name: "Designer Outerwear", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
+  { id: "luxury-footwear", name: "Luxury Footwear", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
+  { id: "handbags-accessories", name: "Handbags & Accessories", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
+  { id: "cashmere-knitwear", name: "Cashmere Knitwear", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
+  { id: "luxury-lingerie", name: "Luxury Lingerie", icon: IndustryIcons["Luxury & Lifestyle Brands"], active: true },
 ];
 
 // Mock products data - replace with actual data later
 const mockProducts = [
   {
     id: "1",
-    name: "Biodegradable Garment Bags",
-    description: "Sustainable garment bags that protect clothing while reducing plastic waste",
-    industries: ["ready-to-wear", "luxury-fashion", "denim-casual"],
+    name: "Premium Shirt Boxes",
+    description: "Crisp-fold boxes with collar protection for luxury shirts and blouses.",
+    industries: ["luxury-shirts", "tailored-suits"],
     image: "/api/placeholder/300/200"
   },
   {
     id: "2",
-    name: "Eco-Luxury Shoe Boxes",
-    description: "Premium shoe packaging made from recycled and biodegradable materials",
-    industries: ["footwear", "luxury-fashion", "accessories"],
+    name: "Couture Gown Packaging",
+    description: "Large-format boxes with padding for embellished eveningwear.",
+    industries: ["evening-dresses", "designer-outerwear"],
     image: "/api/placeholder/300/200"
   },
   {
     id: "3",
-    name: "Sustainable Accessory Packaging",
-    description: "Elegant, minimal packaging for jewelry, bags, and fashion accessories",
-    industries: ["accessories", "luxury-fashion", "streetwear"],
+    name: "Luxury Footwear & Handbag Sets",
+    description: "Premium boxes and dust bags for high-end footwear and handbags.",
+    industries: ["luxury-footwear", "handbags-accessories"],
     image: "/api/placeholder/300/200"
   },
   {
     id: "4",
-    name: "Streetwear Bundle Packaging",
-    description: "Urban-inspired packaging solutions for streetwear and athleisure brands",
-    industries: ["streetwear", "athleisure", "sustainable-fashion"],
+    name: "Outerwear Garment Covers",
+    description: "Breathable covers that protect coats, cashmere, and statement outerwear.",
+    industries: ["designer-outerwear", "cashmere-knitwear"],
     image: "/api/placeholder/300/200"
   }
 ];
@@ -223,7 +223,7 @@ export const TransformingProductsSection = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-concrete mb-4">
-            Sustainable Fashion Packaging Solutions
+            Luxury Apparel Packaging Solutions
           </h2>
         </motion.div>
 
@@ -237,10 +237,10 @@ export const TransformingProductsSection = () => {
           >
             <div className="text-center mb-6">
               <h3 className="text-lg font-semibold text-concrete mb-2">
-                Find Your Perfect Packaging Solution
+                Find Your Luxury Packaging Fit
               </h3>
               <p className="text-ash text-sm">
-                Select your fashion segment to discover tailored sustainable packaging options
+                Select your luxury apparel category to view tailored packaging concepts
               </p>
             </div>
 
@@ -257,7 +257,7 @@ export const TransformingProductsSection = () => {
                     <input
                       ref={searchInputRef}
                       type="text"
-                      placeholder={selectedIndustry ? `${selectedIndustry.name} - Click to search or change...` : "Search for your fashion segment..."}
+                      placeholder={selectedIndustry ? `${selectedIndustry.name} - Click to search or change...` : "Search for a luxury apparel category..."}
                       value={searchQuery}
                       onChange={(e) => {
                         setSearchQuery(e.target.value);
@@ -303,7 +303,7 @@ export const TransformingProductsSection = () => {
                         setSearchQuery("");
                       }
                     }}
-                    aria-label="Browse all industries"
+                    aria-label="Browse all categories"
                     className="h-10 w-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 flex-shrink-0 mr-2 transition-colors"
                   >
                     <Building2 className="w-4 h-4" />
@@ -326,7 +326,9 @@ export const TransformingProductsSection = () => {
                             {showHeader && (
                               <div className="px-4 py-3 border-b border-gray-100 mb-2">
                                 <p className="text-sm text-gray-600 font-medium">
-                                  {isIndustryDropdownOpen ? "All Fashion Segments" : `${displayIndustries.length} fashion segment${displayIndustries.length === 1 ? '' : 's'} found`}
+                                  {isIndustryDropdownOpen
+                                    ? "All Luxury Apparel Categories"
+                                    : `${displayIndustries.length} ${displayIndustries.length === 1 ? "category" : "categories"} found`}
                                 </p>
                               </div>
                             )}
@@ -358,7 +360,7 @@ export const TransformingProductsSection = () => {
                                       {searchQuery.trim() && !isIndustryDropdownOpen ? highlightMatch(industry.name, searchQuery) : industry.name}
                                     </p>
                                     <p className="text-sm text-gray-500 truncate mt-0.5">
-                                      Sustainable fashion packaging solutions
+                                      Luxury apparel packaging concepts
                                     </p>
                                   </div>
                                   {selectedIndex === index && (
@@ -372,10 +374,10 @@ export const TransformingProductsSection = () => {
                           <div className="text-center py-8">
                             <Search className="w-8 h-8 text-gray-400 mx-auto mb-3" />
                             <p className="text-sm text-gray-500">
-                              No industries found matching "{searchQuery}"
+                              No categories found matching "{searchQuery}"
                             </p>
                             <p className="text-xs text-gray-400 mt-1">
-                              Try different keywords or browse all fashion segments
+                              Try different keywords or browse all categories
                             </p>
                           </div>
                         ) : null;
@@ -404,10 +406,10 @@ export const TransformingProductsSection = () => {
                   </span>
                 </div>
                 <h3 className="text-2xl font-bold text-concrete mb-2">
-                  Tailored Packaging Solutions
+                  Tailored Packaging Concepts
                 </h3>
                 <p className="text-ash">
-                  {filteredProducts.length} specialized {filteredProducts.length === 1 ? 'product' : 'products'} for your industry
+                  {filteredProducts.length} specialized {filteredProducts.length === 1 ? 'product' : 'products'} for your category
                 </p>
               </div>
 
@@ -465,8 +467,8 @@ export const TransformingProductsSection = () => {
                     Coming Soon for {selectedIndustry.name}
                   </h4>
                   <p className="text-ash max-w-md mx-auto leading-relaxed">
-                    We're currently developing specialized packaging solutions for your industry.
-                    Our team is working on products that perfectly match your business needs.
+                    We're currently developing specialized packaging solutions for this luxury category.
+                    Our team is crafting concepts that match premium apparel expectations.
                   </p>
                   <ShinyButton className="mt-6 px-6 py-3">
                     Get Notified When Available

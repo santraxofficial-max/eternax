@@ -166,7 +166,7 @@ export const PackagingQualitySection = () => {
             >
               <div className="text-center">
                 <div className="text-xl font-bold text-green-600 mb-1">99.9%</div>
-                <div className="text-slate-600 dark:text-slate-400 text-sm">Fashion Protection Rating</div>
+                <div className="text-slate-600 dark:text-slate-400 text-sm">Luxury Apparel Protection Rating</div>
                 <div className="text-xs text-slate-500 dark:text-slate-500 mt-1">Garment Care Certified</div>
               </div>
             </motion.div>
@@ -247,7 +247,7 @@ export const PackagingQualitySection = () => {
               className="flex items-center gap-3 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors min-w-[200px]"
             >
               <div className="w-3 h-3 bg-green-500 rounded-full flex-shrink-0"></div>
-              <span className="text-sm font-medium text-slate-900 dark:text-white">FDA Approved</span>
+              <span className="text-sm font-medium text-slate-900 dark:text-white">Garment Safe Certified</span>
             </motion.div>
 
             <motion.div

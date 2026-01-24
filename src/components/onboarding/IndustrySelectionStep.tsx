@@ -13,54 +13,42 @@ interface IndustrySelectionStepProps {
   onContinue: () => void;
 }
 
-const industries = [
+const fashionCategories = [
   {
-    id: "ready-to-wear",
-    name: "Ready-to-Wear",
+    id: "saree-packaging",
+    name: "Saree Packaging",
     icon: Crown,
-    keywords: ["ready to wear", "rtw", "casual", "everyday", "contemporary", "modern", "apparel"]
+    keywords: ["saree", "traditional", "indian", "ethnic", "silk", "cotton", "wedding"]
   },
   {
-    id: "luxury-fashion",
-    name: "Luxury Fashion",
+    id: "bridal-wear-packaging",
+    name: "Bridal Wear Packaging",
     icon: Crown,
-    keywords: ["luxury", "high fashion", "couture", "designer", "premium", "high-end", "exclusive"]
+    keywords: ["bridal", "wedding", "lehenga", "gown", "ceremony", "marriage", "special occasion"]
   },
   {
-    id: "streetwear",
-    name: "Streetwear",
+    id: "luxury-apparel-packaging",
+    name: "Luxury Apparel Packaging",
+    icon: Crown,
+    keywords: ["luxury", "high-end", "designer", "premium", "couture", "exclusive", "bespoke"]
+  },
+  {
+    id: "ethnic-wear-packaging",
+    name: "Ethnic Wear Packaging",
+    icon: Crown,
+    keywords: ["ethnic", "traditional", "cultural", "festive", "regional", "heritage", "authentic"]
+  },
+  {
+    id: "formal-wear-packaging",
+    name: "Formal Wear Packaging",
     icon: ShoppingBag,
-    keywords: ["streetwear", "urban", "hip hop", "sneaker", "athletic", "casual", "youth"]
+    keywords: ["formal", "business", "corporate", "suit", "blazer", "office", "professional"]
   },
   {
-    id: "accessories",
-    name: "Accessories",
-    icon: Crown,
-    keywords: ["accessories", "bags", "jewelry", "scarves", "belts", "hats", "watches"]
-  },
-  {
-    id: "footwear",
-    name: "Footwear",
-    icon: Crown,
-    keywords: ["shoes", "sneakers", "boots", "sandals", "heels", "footwear", "shoes"]
-  },
-  {
-    id: "denim-casual",
-    name: "Denim & Casual",
+    id: "outerwear-packaging",
+    name: "Outerwear Packaging",
     icon: ShoppingBag,
-    keywords: ["denim", "jeans", "casual", "comfort", "everyday wear", "basics", "essentials"]
-  },
-  {
-    id: "athleisure",
-    name: "Athleisure",
-    icon: ShoppingBag,
-    keywords: ["athleisure", "activewear", "sportswear", "gym", "fitness", "performance", "lifestyle"]
-  },
-  {
-    id: "sustainable-fashion",
-    name: "Sustainable Fashion",
-    icon: Crown,
-    keywords: ["sustainable", "eco", "organic", "ethical", "green", "conscious", "responsible"]
+    keywords: ["outerwear", "jacket", "coat", "winter", "seasonal", "protective", "layering"]
   }
 ];
 
@@ -73,11 +61,11 @@ export const IndustrySelectionStep: React.FC<IndustrySelectionStepProps> = ({
 
   const filteredIndustries = useMemo(() => {
     if (!searchQuery.trim()) {
-      return industries;
+      return fashionCategories;
     }
 
     const query = searchQuery.toLowerCase();
-    return industries.filter(industry =>
+    return fashionCategories.filter(industry =>
       industry.name.toLowerCase().includes(query) ||
       industry.keywords.some(keyword => keyword.toLowerCase().includes(query))
     );
@@ -94,10 +82,10 @@ export const IndustrySelectionStep: React.FC<IndustrySelectionStepProps> = ({
           className="text-center mb-20"
         >
           <h2 className="text-3xl md:text-5xl font-bold text-concrete mb-6">
-            Let's create sustainable fashion packaging together
+            Select your luxury apparel packaging category
           </h2>
           <p className="text-concrete-muted max-w-2xl mx-auto text-lg">
-            Tell us about your fashion brand. We'll craft packaging that enhances your style and supports your sustainability goals.
+            Choose the luxury apparel segment that best describes your brand. We'll create specialized packaging solutions tailored to your unique style and market.
           </p>
         </motion.div>
 
@@ -112,7 +100,7 @@ export const IndustrySelectionStep: React.FC<IndustrySelectionStepProps> = ({
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-copper w-5 h-5 z-10" />
             <input
               type="text"
-              placeholder="Search your fashion category..."
+              placeholder="Search luxury apparel packaging categories..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value.toUpperCase())}
               onKeyDown={(e) => {

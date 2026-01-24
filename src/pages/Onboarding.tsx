@@ -1,170 +1,127 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
-import { IndustrySelectionStep } from "@/components/onboarding/IndustrySelectionStep";
 import { ProductSelectionStep } from "@/components/onboarding/ProductSelectionStep";
-import { ProductConfirmationStep } from "@/components/onboarding/ProductConfirmationStep";
-import { DesignStudioIntroStep } from "@/components/onboarding/DesignStudioIntroStep";
-import { ProductDesignWorkflowStep } from "@/components/onboarding/ProductDesignWorkflowStep";
 import { DesignStudioStep } from "@/components/onboarding/DesignStudioStep";
-import ReactorKnob from "@/components/ui/control-knob";
+import { ProductConfirmationStep } from "@/components/onboarding/ProductConfirmationStep";
+import { ProductDesignBridgeStep } from "@/components/onboarding/ProductDesignBridgeStep";
+import { getLuxuryProductById } from "@/components/onboarding/luxuryProducts";
+import { ShinyButton } from "@/components/ui/shiny-button";
 
 export type OnboardingData = {
-  industry: string;
   products: string[];
-  // Add more fields as we build more steps
 };
 
+type OnboardingPhase = "select" | "confirm" | "bridge" | "design" | "complete";
+
 const Onboarding = () => {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentPhase, setCurrentPhase] = useState<OnboardingPhase>("select");
+  const [currentProductIndex, setCurrentProductIndex] = useState(0);
   const [data, setData] = useState<OnboardingData>({
-    industry: "",
     products: [],
   });
-  const [showLoadingAnimation, setShowLoadingAnimation] = useState(false);
-  const [showSecondLoadingAnimation, setShowSecondLoadingAnimation] = useState(false);
-  const [showThirdLoadingAnimation, setShowThirdLoadingAnimation] = useState(false);
-  const [showFourthLoadingAnimation, setShowFourthLoadingAnimation] = useState(false);
-  const [currentProductIndex, setCurrentProductIndex] = useState(0);
-
-  const handleIndustrySelect = (industry: string) => {
-    setData(prev => ({ ...prev, industry }));
-    // For now, just log the selection - we'll handle step progression later
-    console.log("Selected industry:", industry);
-  };
 
   const handleProductsSelect = (products: string[]) => {
-    setData(prev => ({ ...prev, products }));
-    console.log("Selected products:", products);
+    setData((prev) => ({ ...prev, products }));
   };
 
-  const handleContinueToProducts = () => {
-    setShowLoadingAnimation(true);
-    // After 3 seconds, hide loading and show step 2
-    setTimeout(() => {
-      setShowLoadingAnimation(false);
-      setCurrentStep(2);
-    }, 3000);
+  const handleContinueToConfirmation = () => {
+    setCurrentPhase("confirm");
   };
 
-  const handleContinueFromProducts = () => {
-    setShowSecondLoadingAnimation(true);
-    // After 3 seconds, hide loading and show step 3
-    setTimeout(() => {
-      setShowSecondLoadingAnimation(false);
-      setCurrentStep(3);
-    }, 3000);
+  const handleBackToSelection = () => {
+    setCurrentPhase("select");
   };
 
-  const handleBackToProducts = () => {
-    setCurrentStep(2);
-  };
-
-  const handleFinalConfirmation = () => {
-    setShowThirdLoadingAnimation(true);
-    // After 3 seconds, hide loading and show step 3.1 (design studio intro)
-    setTimeout(() => {
-      setShowThirdLoadingAnimation(false);
-      setCurrentStep(4); // Step 3.1 - Design Studio Intro
-    }, 3000);
-  };
-
-  const handleStartDesigning = () => {
+  const handleConfirmSelection = () => {
     setCurrentProductIndex(0);
-    setCurrentStep(5); // Step 3.2 - Workflow step (direct transition, no animation)
+    setCurrentPhase("bridge");
   };
 
   const handleBridgeAutoAdvance = () => {
-    setCurrentStep(6); // Step 4 - Design Studio (direct transition, no animation)
+    setCurrentPhase("design");
   };
 
-  const handleConfirmDesign = () => {
-    const nextProductIndex = currentProductIndex + 1;
-
-    if (nextProductIndex < data.products.length) {
-      // More products to design
-      setCurrentProductIndex(nextProductIndex);
-      setCurrentStep(5); // Back to bridge step for next product
-    } else {
-      // All products designed
-      console.log("All products designed! Final data:", data);
-      // For now, just log - in a real app this would navigate to next step
+  const handleDesignComplete = () => {
+    if (currentProductIndex < data.products.length - 1) {
+      setCurrentProductIndex((prev) => prev + 1);
+      setCurrentPhase("bridge");
+      return;
     }
+    setCurrentPhase("complete");
   };
+
+  const handleRestart = () => {
+    setData({ products: [] });
+    setCurrentProductIndex(0);
+    setCurrentPhase("select");
+  };
+
+  useEffect(() => {
+    if (!data.products.length && (currentPhase === "bridge" || currentPhase === "design")) {
+      setCurrentPhase("select");
+    }
+  }, [currentPhase, data.products.length]);
+
+  useEffect(() => {
+    if (currentProductIndex >= data.products.length) {
+      setCurrentProductIndex(0);
+    }
+  }, [currentProductIndex, data.products.length]);
+
+  const currentProduct = getLuxuryProductById(data.products[currentProductIndex]);
 
   const renderStep = () => {
-    // Show loading animation between step 1 and 2
-    if (showLoadingAnimation) {
-      return <ReactorKnob text="PROCESSING" />;
-    }
-
-    // Show loading animation between step 2 and 3
-    if (showSecondLoadingAnimation) {
-      return <ReactorKnob text="ANALYZING" />;
-    }
-
-    // Show loading animation between step 3 and 3.1
-    if (showThirdLoadingAnimation) {
-      return <ReactorKnob text="PREPARING" />;
-    }
-
-    // Show loading animation between step 3.1 and 3.2
-    if (showFourthLoadingAnimation && currentStep === 4) {
-      return <ReactorKnob text="INITIALIZING" />;
-    }
-
-    switch (currentStep) {
-      case 1:
-        return (
-          <IndustrySelectionStep
-            selectedIndustry={data.industry}
-            onSelectIndustry={handleIndustrySelect}
-            onContinue={handleContinueToProducts}
-          />
-        );
-      case 2:
+    switch (currentPhase) {
+      case "select":
         return (
           <ProductSelectionStep
-            selectedIndustry={data.industry}
             selectedProducts={data.products}
             onSelectProducts={handleProductsSelect}
-            onContinue={handleContinueFromProducts}
+            onContinue={handleContinueToConfirmation}
           />
         );
-      case 3:
+      case "confirm":
         return (
           <ProductConfirmationStep
-            selectedIndustry={data.industry}
             selectedProducts={data.products}
-            onBackToSelection={handleBackToProducts}
-            onConfirm={handleFinalConfirmation}
+            onBackToSelection={handleBackToSelection}
+            onConfirm={handleConfirmSelection}
           />
         );
-      case 4: // Step 3.1 - Design Studio Intro
-        return (
-          <DesignStudioIntroStep
-            selectedIndustry={data.industry}
-            selectedProducts={data.products}
-            onStartDesigning={handleStartDesigning}
-          />
-        );
-      case 5: // Step 3.2/3.3 - Product Design Workflow
-        return (
-          <ProductDesignWorkflowStep
-            selectedIndustry={data.industry}
+      case "bridge":
+        return currentProduct ? (
+          <ProductDesignBridgeStep
             selectedProducts={data.products}
             currentProductIndex={currentProductIndex}
             onAutoAdvance={handleBridgeAutoAdvance}
           />
-        );
-      case 6: // Step 4 - Design Studio
-        return (
+        ) : null;
+      case "design":
+        return currentProduct ? (
           <DesignStudioStep
-            selectedIndustry={data.industry}
-            selectedProducts={data.products}
+            selectedProduct={currentProduct}
             currentProductIndex={currentProductIndex}
-            onConfirmDesign={handleConfirmDesign}
+            totalProducts={data.products.length}
+            onComplete={handleDesignComplete}
           />
+        ) : null;
+      case "complete":
+        return (
+          <div className="min-h-screen flex flex-col justify-center px-8 py-20">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl md:text-5xl font-bold text-concrete mb-4">
+                All products are queued for customization
+              </h2>
+              <p className="text-concrete-muted text-lg mb-8">
+                Your selections are saved. We'll guide you through production-ready
+                packaging next.
+              </p>
+              <ShinyButton onClick={handleRestart} className="px-10 py-4 text-lg font-semibold">
+                Start another selection
+              </ShinyButton>
+            </div>
+          </div>
         );
       default:
         return null;
@@ -172,13 +129,13 @@ const Onboarding = () => {
   };
 
   return (
-    <Layout hideFooter={true} hideHeader={true} fullHeight={true}>
+    <Layout hideFooter={true} hideHeader={true} fullHeight={true} disableGridBackground={true}>
       <AnimatePresence mode="wait">
         <motion.div
-          key={showLoadingAnimation ? 'loading-1' : showSecondLoadingAnimation ? 'loading-2' : showThirdLoadingAnimation ? 'loading-3' : showFourthLoadingAnimation ? 'loading-4' : `step-${currentStep}-product-${currentProductIndex}`}
-          initial={{ opacity: 0, x: (showLoadingAnimation || showSecondLoadingAnimation || showThirdLoadingAnimation || showFourthLoadingAnimation) ? 0 : 20 }}
+          key={`${currentPhase}-${currentProductIndex}`}
+          initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: (showLoadingAnimation || showSecondLoadingAnimation || showThirdLoadingAnimation || showFourthLoadingAnimation) ? 0 : -20 }}
+          exit={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.3 }}
         >
           {renderStep()}

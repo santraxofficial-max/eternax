@@ -2,40 +2,40 @@ import React, { useState } from "react";
 
 const faqs = [
   {
-    question: "What makes eterna packaging different from traditional plastic?",
+    question: "What makes Eterna packaging different for luxury apparel?",
     answer:
-      "Our bio-based materials are derived from renewable plant sources and offer superior performance while being fully compostable. Unlike traditional plastics that persist in landfills for centuries, eterna packaging naturally breaks down within months under proper composting conditions.",
-    meta: "Materials",
+      "We engineer packaging specifically for premium garments—protecting fabric, finish, and shape while elevating the unboxing experience with luxury-grade details.",
+    meta: "Luxury",
   },
   {
-    question: "How do you ensure packaging meets food safety standards?",
+    question: "How do you protect delicate fabrics and embellishments?",
     answer:
-      "We conduct rigorous testing and maintain certifications for food contact safety, including FDA compliance and EU food contact regulations. Our materials are free from harmful chemicals and undergo comprehensive migration testing to ensure they don't transfer substances to packaged goods.",
-    meta: "Quality",
+      "We use soft-touch liners, padding, breathable materials, and tailored inserts to prevent creasing, scuffing, and snagging during storage and delivery.",
+    meta: "Protection",
   },
   {
-    question: "Can eterna materials handle moisture and temperature variations?",
+    question: "Can you match brand colors, textures, and finishes?",
     answer:
-      "Yes, our formulations are specifically engineered for food packaging applications. They provide excellent moisture barriers, temperature resistance, and structural integrity, ensuring products arrive fresh and protected regardless of shipping conditions.",
-    meta: "Performance",
+      "Absolutely. We offer custom color matching, foils, embossing, debossing, and luxury finishes that align with your brand standards and collection aesthetic.",
+    meta: "Branding",
   },
   {
-    question: "What's the process for developing custom packaging solutions?",
+    question: "Do you support small runs or capsule collections?",
     answer:
-      "We start with understanding your product requirements, then work through material selection, prototyping, and testing phases. Our collaborative approach ensures the final solution perfectly matches your brand vision while meeting all functional requirements.",
-    meta: "Process",
+      "Yes. We provide flexible MOQs and rapid sampling so you can launch limited collections without sacrificing quality or presentation.",
+    meta: "Flexibility",
   },
   {
-    question: "How does eterna support brands in meeting sustainability goals?",
+    question: "How sustainable are the materials?",
     answer:
-      "We help brands achieve their environmental targets through measurable reductions in carbon footprint, improved recyclability, and enhanced brand positioning. Our materials typically reduce plastic use by 90-100% compared to traditional packaging.",
+      "Our materials are designed to reduce plastic use, improve recyclability, and meet modern sustainability standards while maintaining a premium feel.",
     meta: "Sustainability",
   },
   {
-    question: "What certifications does eterna packaging carry?",
+    question: "What happens after I confirm my product selection?",
     answer:
-      "Our materials hold multiple certifications including BPI Compostable, FDA Food Contact Safe, and various regional compostability standards. We also provide full documentation for regulatory compliance and marketing claims.",
-    meta: "Compliance",
+      "We queue each selected product for its own design session. The design studio opens automatically and guides you through customization one product at a time.",
+    meta: "Workflow",
   },
 ];
 

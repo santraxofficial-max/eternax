@@ -41,7 +41,7 @@ export const HeroSection = () => {
             transition={{ duration: 1, delay: 0.6 }}
             className="mt-8 md:mt-10 max-w-2xl mx-auto text-lg md:text-xl text-concrete-muted leading-relaxed text-center"
           >
-            Partnering exclusively with clothing and fashion brands to elevate packaging to contemporary sustainability standards.
+            Partnering exclusively with luxury apparel brands to elevate packaging to contemporary sustainability standards.
           </motion.p>
 
 

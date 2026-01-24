@@ -22,17 +22,33 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     const audio = new Audio('/audio/background-music.mp3');
     audio.loop = true;
     audio.volume = volume;
+    audio.preload = 'auto'; // Preload the audio
     audioRef.current = audio;
+
+    // Load the audio immediately
+    audio.load();
 
     // Auto-play on first user interaction
     const handleFirstInteraction = () => {
       if (!hasUserInteracted) {
         setHasUserInteracted(true);
-        audio.play().then(() => {
-          setIsPlaying(true);
-        }).catch((err) => {
-          console.log('Auto-play prevented:', err);
-        });
+        // Ensure audio is ready before playing
+        if (audio.readyState >= 2) { // HAVE_CURRENT_DATA or higher
+          audio.play().then(() => {
+            setIsPlaying(true);
+          }).catch((err) => {
+            console.log('Auto-play prevented:', err);
+          });
+        } else {
+          // Wait for audio to be ready
+          audio.addEventListener('canplaythrough', () => {
+            audio.play().then(() => {
+              setIsPlaying(true);
+            }).catch((err) => {
+              console.log('Auto-play prevented:', err);
+            });
+          }, { once: true });
+        }
       }
     };
 
@@ -65,11 +81,30 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       audioRef.current.pause();
       setIsPlaying(false);
     } else {
-      audioRef.current.play().then(() => {
-        setIsPlaying(true);
-      }).catch((err) => {
-        console.log('Audio play error:', err);
-      });
+      // Ensure user has interacted (for browser autoplay policy)
+      if (!hasUserInteracted) {
+        setHasUserInteracted(true);
+      }
+
+      // Check if audio is ready to play
+      if (audioRef.current.readyState >= 2) { // HAVE_CURRENT_DATA or higher
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+        }).catch((err) => {
+          console.log('Audio play error:', err);
+        });
+      } else {
+        // Wait for audio to be ready
+        const handleCanPlay = () => {
+          audioRef.current?.play().then(() => {
+            setIsPlaying(true);
+          }).catch((err) => {
+            console.log('Audio play error:', err);
+          });
+          audioRef.current?.removeEventListener('canplaythrough', handleCanPlay);
+        };
+        audioRef.current.addEventListener('canplaythrough', handleCanPlay);
+      }
     }
   };
 

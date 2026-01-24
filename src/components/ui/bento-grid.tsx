@@ -29,12 +29,12 @@ interface BentoGridProps {
 
 const itemsSample: BentoItem[] = [
     {
-        title: "Custom Food Packaging Design",
-        meta: "From concept to shelf",
-        description: "Complete packaging solutions tailored for food brands. We design packaging that protects products while telling your unique story.",
+        title: "Custom Luxury Apparel Packaging",
+        meta: "From atelier to wardrobe",
+        description: "Complete packaging solutions tailored for luxury apparel brands. We design packaging that protects garments while elevating your brand story.",
         icon: <Palette className="w-5 h-5 text-ash-dark" />,
         status: "Live",
-        tags: ["Design", "Branding", "Food-Safe"],
+        tags: ["Design", "Branding", "Garment-Safe"],
         colSpan: 2,
         rowSpan: 1,
         hasPersistentHover: true,
@@ -42,7 +42,7 @@ const itemsSample: BentoItem[] = [
     {
         title: "Sustainable Materials",
         meta: "Planet-friendly",
-        description: "Biodegradable, recyclable materials that maintain food safety while reducing environmental impact.",
+        description: "Biodegradable, recyclable materials that protect luxury garments while reducing environmental impact.",
         icon: <Leaf className="w-5 h-5 text-ash-dark" />,
         status: "Premium",
         tags: ["Eco-Friendly", "Biodegradable"],
@@ -50,22 +50,22 @@ const itemsSample: BentoItem[] = [
     {
         title: "Direct Manufacturing",
         meta: "No middlemen",
-        description: "We manufacture in-house, ensuring quality control, competitive pricing, and faster turnaround times.",
+        description: "We manufacture in-house, ensuring quality control and faster turnaround times for luxury apparel.",
         icon: <Factory className="w-5 h-5 text-ash-dark" />,
         tags: ["Manufacturing", "Quality"],
     },
     {
-        title: "Food Safety Compliance",
-        meta: "FDA certified",
-        description: "All packaging meets stringent food safety regulations and international quality standards.",
+        title: "Luxury Apparel Standards",
+        meta: "Certified quality",
+        description: "All packaging meets luxury apparel standards for garment protection and premium presentation.",
         icon: <Shield className="w-5 h-5 text-ash-dark" />,
         status: "Certified",
-        tags: ["FDA", "Safety", "Compliance"],
+        tags: ["Quality", "Compliance", "Protection"],
     },
     {
         title: "Rapid Prototyping",
         meta: "Quick iterations",
-        description: "Fast-track your packaging development with our rapid prototyping and testing services.",
+        description: "Fast-track your luxury apparel packaging with rapid prototyping and testing services.",
         icon: <Zap className="w-5 h-5 text-ash-dark" />,
         status: "Express",
         tags: ["Prototyping", "Testing"],
@@ -73,7 +73,7 @@ const itemsSample: BentoItem[] = [
     {
         title: "Brand Partnership",
         meta: "End-to-end support",
-        description: "From initial consultation to market launch, we're your dedicated packaging partner.",
+        description: "From initial consultation to market launch, we're your dedicated luxury packaging partner.",
         icon: <Users className="w-5 h-5 text-ash-dark" />,
         tags: ["Consulting", "Support"],
     },

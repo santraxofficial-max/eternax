@@ -10,7 +10,7 @@ const principles = [
     icon: Shield,
     title: "Garment-Safe First",
     description:
-      "Every material we use is certified for garment protection. No exceptions. Your customers trust your fashion—we ensure the packaging preserves quality and finish.",
+      "Every material we use is certified for garment protection. No exceptions. Your customers trust your luxury apparel—we ensure the packaging preserves quality and finish.",
   },
   {
     icon: Leaf,
@@ -28,14 +28,14 @@ const principles = [
     icon: Award,
     title: "Performance Without Compromise",
     description:
-      "Sustainable doesn't mean weak. Our materials handle moisture, dust, stacking, and transport—everything your fashion pieces demand.",
+      "Sustainable doesn't mean weak. Our materials handle moisture, dust, stacking, and transport—everything your luxury pieces demand.",
   },
 ];
 
 const materials = [
   {
     name: "Sugarcane Bagasse",
-    best_for: "Luxury garment bags, premium shoe boxes, high-end fashion",
+    best_for: "Luxury garment bags, premium shoe boxes, high-end luxury apparel",
     properties: ["Shape retention", "Moisture resistant", "Fully compostable"],
   },
   {
@@ -45,12 +45,12 @@ const materials = [
   },
   {
     name: "Bamboo Fiber",
-    best_for: "Premium packaging, sustainable fashion brands",
+    best_for: "Premium packaging, sustainable luxury apparel brands",
     properties: ["Naturally antibacterial", "Rapid renewal", "Elegant texture"],
   },
   {
     name: "Cornstarch Blend",
-    best_for: "Transparent cases, accessory displays, fashion applications",
+    best_for: "Transparent cases, accessory displays, luxury apparel applications",
     properties: ["Clear appearance", "Oil resistant", "Industrial compostable"],
   },
   {
@@ -94,7 +94,7 @@ const Materials = () => {
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
               Our materials are chosen not just for sustainability claims—but for
               real-world performance. Every option is vetted, tested, and proven
-              in actual fashion retail conditions.
+              in actual luxury retail conditions.
             </p>
           </motion.div>
         </div>
@@ -214,7 +214,7 @@ const Materials = () => {
             </p>
 
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-              {["FDA Compliant", "ASTM D6400", "EN 13432", "BPI Certified", "ISO 14001"].map(
+              {["OEKO-TEX Standard 100", "REACH Compliant", "EN 13432", "BPI Certified", "ISO 14001"].map(
                 (cert) => (
                   <span
                     key={cert}

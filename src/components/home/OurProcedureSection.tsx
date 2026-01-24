@@ -8,20 +8,20 @@ const steps = [
   {
     number: "01",
     icon: Building2,
-    title: "Fashion Segment Selection",
-    description: "Choose your fashion category—ready-to-wear, luxury, streetwear, or accessories—to get tailored packaging solutions that match your brand's style and target market."
+    title: "Luxury Product Selection",
+    description: "Choose the luxury apparel products you want packaging for—shirts, suits, gowns, outerwear, and accessories."
   },
   {
     number: "02",
     icon: Package,
-    title: "Garment Collection Selection",
-    description: "Select specific clothing items from your collection that need sustainable packaging—from t-shirts and dresses to shoes and accessories."
+    title: "Confirm & Queue for Design",
+    description: "Review your selection and we'll prepare each product for its own dedicated design session."
   },
   {
     number: "03",
     icon: Palette,
-    title: "Brand-Aligned Design",
-    description: "Design packaging that complements your fashion aesthetic, incorporates your brand colors, and communicates your sustainability story to conscious consumers."
+    title: "Design Studio Customization",
+    description: "Customize materials, finishes, and branding for each product in the design studio—one by one."
   }
 ];
 
@@ -55,7 +55,7 @@ export const OurProcedureSection = () => {
             Simple. Straightforward. Sustainable.
           </h2>
           <p className="text-concrete-muted max-w-2xl mx-auto text-lg">
-            Transform your fashion packaging in just three easy steps. We handle the sustainability complexity while you focus on your creative vision.
+            Transform your luxury apparel packaging in just three easy steps. We handle the sustainability complexity while you focus on your creative vision.
           </p>
         </motion.div>
 

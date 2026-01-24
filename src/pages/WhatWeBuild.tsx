@@ -10,7 +10,7 @@ const capabilities = [
     icon: Package,
     title: "Garment Bags & Hangers",
     description:
-      "From individual pieces to complete collections. Our garment bags protect fabrics, maintain shape, and create that premium first impression your fashion deserves.",
+      "From individual pieces to complete collections. Our garment bags protect fabrics, maintain shape, and create that premium first impression your luxury apparel deserves.",
     features: ["Fabric protection", "Shape retention", "Brand integration"],
   },
   {
@@ -31,21 +31,21 @@ const capabilities = [
     icon: Utensils,
     title: "Tissue Paper & Inserts",
     description:
-      "Premium tissue, ribbons, and protective inserts. Refined enough for luxury brands, functional enough for everyday fashion. No compromises.",
+      "Premium tissue, ribbons, and protective inserts. Refined enough for luxury brands, functional enough for everyday luxury apparel. No compromises.",
     features: ["Luxury textures", "Color matching", "Custom patterns"],
   },
   {
     icon: ShoppingBag,
     title: "Shopping & Carry Bags",
     description:
-      "The journey from boutique to home. Our bags handle the weight of fashion purchases and arrive looking like the premium brands they represent.",
+      "The journey from boutique to home. Our bags handle the weight of luxury purchases and arrive looking like the premium brands they represent.",
     features: ["Reinforced handles", "Brand printing", "Size options"],
   },
   {
     icon: Gift,
     title: "Gift & Presentation Packaging",
     description:
-      "Unboxing fashion is a ritual. For luxury items, collections, or special pieces—we create packaging that makes the experience unforgettable.",
+      "Unboxing luxury apparel is a ritual. For special pieces and collections—we create packaging that makes the experience unforgettable.",
     features: ["Magnetic closures", "Tissue integration", "Premium finishes"],
   },
 ];

@@ -53,7 +53,7 @@ const About = () => {
               We exist because plastic shouldn't.
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              Eterna was founded on a simple premise: premium fashion brands deserve
+              Eterna was founded on a simple premise: luxury apparel brands deserve
               premium sustainable packaging. Not compromise solutions. Not
               greenwashing. Real, functional, beautiful alternatives to plastic.
             </p>
@@ -77,13 +77,13 @@ const About = () => {
                 Born from frustration with the status quo.
               </h2>
               <p className="mt-6 text-muted-foreground leading-relaxed">
-                We watched innovative fashion brands—those pushing boundaries in
+                We watched innovative luxury apparel brands—those pushing boundaries in
                 design, sustainability, and ethics—get stuck with the same plastic
                 garment bags as everyone else. Their collections were revolutionary.
                 Their packaging wasn't.
               </p>
               <p className="mt-4 text-muted-foreground leading-relaxed">
-                Eterna was built to bridge that gap. To give visionary fashion brands
+                Eterna was built to bridge that gap. To give visionary luxury apparel brands
                 packaging that matches their ambition. Packaging that protects
                 their garments, represents their values, and doesn't end up in
                 landfills for centuries.
@@ -99,7 +99,7 @@ const About = () => {
               <div className="card-premium p-10">
                 <blockquote className="text-xl text-foreground font-medium italic leading-relaxed">
                   "Every year, 8 million tons of plastic enters our oceans.
-                  We're here to make sure fashion packaging isn't part of that
+                  We're here to make sure luxury apparel packaging isn't part of that
                   problem."
                 </blockquote>
                 <p className="mt-6 text-muted-foreground">
@@ -166,14 +166,14 @@ const About = () => {
               Our Vision
             </span>
             <h2 className="mt-4 text-3xl md:text-4xl font-bold text-foreground">
-              Dedicated to fashion's sustainable future.
+              Dedicated to luxury apparel's sustainable future.
             </h2>
             <p className="mt-6 text-muted-foreground leading-relaxed">
-              Today, we're focused entirely on fashion and clothing packaging—where
-              the need is urgent and the impact is immediate. As the fashion industry
+              Today, we're focused entirely on luxury apparel packaging—where the
+              need is urgent and the impact is immediate. As the luxury apparel industry
               leads the charge toward sustainability, we're committed to providing
-              every fashion brand with packaging that matches their vision for a
-              better tomorrow.
+              every luxury apparel brand with packaging that matches their vision for
+              a better tomorrow.
             </p>
             <p className="mt-4 text-ash">
               But we're not rushing. We're perfecting.

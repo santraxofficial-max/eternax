@@ -90,7 +90,7 @@ export const TheSolutionSection = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="text-lg text-muted-foreground leading-relaxed"
             >
-              Sustainable fashion packaging transforms environmental responsibility into brand advantage.
+              Sustainable luxury apparel packaging transforms environmental responsibility into brand advantage.
             </motion.div>
 
             {/* Key Strategy Card */}
@@ -106,10 +106,10 @@ export const TheSolutionSection = () => {
                 </div>
                 <div>
                   <p className="text-sm font-medium text-green-800 dark:text-green-300 mb-1">
-                    Fashion-Forward Replacement
+                    Luxury-Apparel Replacement
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    Plastic garment bags → Biodegradable fashion packaging
+                    Plastic garment bags → Biodegradable luxury apparel packaging
                   </p>
                 </div>
               </div>
@@ -152,7 +152,7 @@ export const TheSolutionSection = () => {
                   className="flex items-center gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
                 >
                   <Recycle className="w-5 h-5 text-emerald-500" />
-                  <span className="text-sm">Support circular fashion economy</span>
+                  <span className="text-sm">Support circular luxury apparel economy</span>
                 </motion.div>
               </div>
             </motion.div>
@@ -176,7 +176,7 @@ export const TheSolutionSection = () => {
                   className="flex items-center gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
                 >
                   <Heart className="w-5 h-5 text-red-500" />
-                  <span className="text-sm">Attract conscious fashion consumers</span>
+                  <span className="text-sm">Attract conscious luxury buyers</span>
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
@@ -185,7 +185,7 @@ export const TheSolutionSection = () => {
                   className="flex items-center gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
                 >
                   <CheckCircle className="w-5 h-5 text-green-500" />
-                  <span className="text-sm">EU Green Deal compliance for fashion</span>
+                  <span className="text-sm">EU Green Deal compliance for luxury apparel</span>
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
@@ -194,7 +194,7 @@ export const TheSolutionSection = () => {
                   className="flex items-center gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
                 >
                   <Target className="w-5 h-5 text-blue-500" />
-                  <span className="text-sm">Premium positioning in sustainable fashion</span>
+                  <span className="text-sm">Premium positioning in sustainable luxury apparel</span>
                 </motion.div>
               </div>
             </motion.div>
@@ -206,7 +206,7 @@ export const TheSolutionSection = () => {
               transition={{ duration: 0.6, delay: 2.6 }}
               className="text-base text-muted-foreground leading-relaxed border-l-4 border-green-500 pl-4 italic"
             >
-              Sustainable fashion packaging is no longer optional—it's the competitive advantage that defines tomorrow's fashion leaders.
+              Sustainable luxury apparel packaging is no longer optional—it's the competitive advantage that defines tomorrow's luxury leaders.
             </motion.div>
           </motion.div>
         </div>

@@ -8,11 +8,12 @@ interface LayoutProps {
   hideFooter?: boolean;
   hideHeader?: boolean;
   fullHeight?: boolean;
+  disableGridBackground?: boolean;
 }
 
-export const Layout = ({ children, hideFooter = false, hideHeader = false, fullHeight = false }: LayoutProps) => {
+export const Layout = ({ children, hideFooter = false, hideHeader = false, fullHeight = false, disableGridBackground = false }: LayoutProps) => {
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <div className={`min-h-screen flex flex-col relative ${disableGridBackground ? 'bg-black' : ''}`}>
       {!hideHeader && <Header />}
       <main className={`flex-1 ${fullHeight ? 'pt-0 pb-0' : 'pt-0 sm:pt-24 pb-20 sm:pb-0'} relative z-10`}>{children}</main>
       {!hideFooter && <Footer />}
