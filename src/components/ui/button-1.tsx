@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { ChevronDown, LucideIcon } from 'lucide-react';
-import { Slot as SlotPrimitive } from 'radix-ui';
+import { Slot } from '@radix-ui/react-slot';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
@@ -68,7 +68,6 @@ const buttonVariants = cva(
       },
     },
     compoundVariants: [
-      // Icons opacity for default mode
       {
         variant: 'ghost',
         mode: 'default',
@@ -78,273 +77,6 @@ const buttonVariants = cva(
         variant: 'outline',
         mode: 'default',
         className: '[&_svg:not([role=img]):not([class*=text-]):not([class*=opacity-])]:opacity-60',
-      },
-      {
-        variant: 'dashed',
-        mode: 'default',
-        className: '[&_svg:not([role=img]):not([class*=text-]):not([class*=opacity-])]:opacity-60',
-      },
-      {
-        variant: 'secondary',
-        mode: 'default',
-        className: '[&_svg:not([role=img]):not([class*=text-]):not([class*=opacity-])]:opacity-60',
-      },
-
-      // Icons opacity for default mode
-      {
-        variant: 'outline',
-        mode: 'input',
-        className: '[&_svg:not([role=img]):not([class*=text-]):not([class*=opacity-])]:opacity-60',
-      },
-      {
-        variant: 'outline',
-        mode: 'icon',
-        className: '[&_svg:not([role=img]):not([class*=text-]):not([class*=opacity-])]:opacity-60',
-      },
-
-      // Auto height
-      {
-        size: 'md',
-        autoHeight: true,
-        className: 'h-auto min-h-8.5',
-      },
-      {
-        size: 'sm',
-        autoHeight: true,
-        className: 'h-auto min-h-7',
-      },
-      {
-        size: 'lg',
-        autoHeight: true,
-        className: 'h-auto min-h-10',
-      },
-
-      // Shadow support
-      {
-        variant: 'primary',
-        mode: 'default',
-        appearance: 'default',
-        className: 'shadow-xs shadow-black/5',
-      },
-      {
-        variant: 'mono',
-        mode: 'default',
-        appearance: 'default',
-        className: 'shadow-xs shadow-black/5',
-      },
-      {
-        variant: 'secondary',
-        mode: 'default',
-        appearance: 'default',
-        className: 'shadow-xs shadow-black/5',
-      },
-      {
-        variant: 'outline',
-        mode: 'default',
-        appearance: 'default',
-        className: 'shadow-xs shadow-black/5',
-      },
-      {
-        variant: 'dashed',
-        mode: 'default',
-        appearance: 'default',
-        className: 'shadow-xs shadow-black/5',
-      },
-      {
-        variant: 'destructive',
-        mode: 'default',
-        appearance: 'default',
-        className: 'shadow-xs shadow-black/5',
-      },
-
-      // Shadow support
-      {
-        variant: 'primary',
-        mode: 'icon',
-        appearance: 'default',
-        className: 'shadow-xs shadow-black/5',
-      },
-      {
-        variant: 'mono',
-        mode: 'icon',
-        appearance: 'default',
-        className: 'shadow-xs shadow-black/5',
-      },
-      {
-        variant: 'secondary',
-        mode: 'icon',
-        appearance: 'default',
-        className: 'shadow-xs shadow-black/5',
-      },
-      {
-        variant: 'outline',
-        mode: 'icon',
-        appearance: 'default',
-        className: 'shadow-xs shadow-black/5',
-      },
-      {
-        variant: 'dashed',
-        mode: 'icon',
-        appearance: 'default',
-        className: 'shadow-xs shadow-black/5',
-      },
-      {
-        variant: 'destructive',
-        mode: 'icon',
-        appearance: 'default',
-        className: 'shadow-xs shadow-black/5',
-      },
-
-      // Link
-      {
-        variant: 'primary',
-        mode: 'link',
-        underline: 'solid',
-        className:
-          'font-medium text-primary hover:text-primary/90 [&_svg:not([role=img]):not([class*=text-])]:opacity-60 hover:underline hover:underline-offset-4 hover:decoration-solid',
-      },
-      {
-        variant: 'primary',
-        mode: 'link',
-        underline: 'dashed',
-        className:
-          'font-medium text-primary hover:text-primary/90 [&_svg:not([role=img]):not([class*=text-])]:opacity-60 hover:underline hover:underline-offset-4 hover:decoration-dashed decoration-1',
-      },
-      {
-        variant: 'primary',
-        mode: 'link',
-        underlined: 'solid',
-        className:
-          'font-medium text-primary hover:text-primary/90 [&_svg:not([role=img]):not([class*=text-])]:opacity-60 underline underline-offset-4 decoration-solid',
-      },
-      {
-        variant: 'primary',
-        mode: 'link',
-        underlined: 'dashed',
-        className:
-          'font-medium text-primary hover:text-primary/90 [&_svg]:opacity-60 underline underline-offset-4 decoration-dashed decoration-1',
-      },
-
-      {
-        variant: 'inverse',
-        mode: 'link',
-        underline: 'solid',
-        className:
-          'font-medium text-inherit [&_svg:not([role=img]):not([class*=text-])]:opacity-60 hover:underline hover:underline-offset-4 hover:decoration-solid',
-      },
-      {
-        variant: 'inverse',
-        mode: 'link',
-        underline: 'dashed',
-        className:
-          'font-medium text-inherit [&_svg:not([role=img]):not([class*=text-])]:opacity-60 hover:underline hover:underline-offset-4 hover:decoration-dashed decoration-1',
-      },
-      {
-        variant: 'inverse',
-        mode: 'link',
-        underlined: 'solid',
-        className:
-          'font-medium text-inherit [&_svg:not([role=img]):not([class*=text-])]:opacity-60 underline underline-offset-4 decoration-solid',
-      },
-      {
-        variant: 'inverse',
-        mode: 'link',
-        underlined: 'dashed',
-        className:
-          'font-medium text-inherit [&_svg:not([role=img]):not([class*=text-])]:opacity-60 underline underline-offset-4 decoration-dashed decoration-1',
-      },
-
-      {
-        variant: 'foreground',
-        mode: 'link',
-        underline: 'solid',
-        className:
-          'font-medium text-foreground [&_svg:not([role=img]):not([class*=text-])]:opacity-60 hover:underline hover:underline-offset-4 hover:decoration-solid',
-      },
-      {
-        variant: 'foreground',
-        mode: 'link',
-        underline: 'dashed',
-        className:
-          'font-medium text-foreground [&_svg:not([role=img]):not([class*=text-])]:opacity-60 hover:underline hover:underline-offset-4 hover:decoration-dashed decoration-1',
-      },
-      {
-        variant: 'foreground',
-        mode: 'link',
-        underlined: 'solid',
-        className:
-          'font-medium text-foreground [&_svg:not([role=img]):not([class*=text-])]:opacity-60 underline underline-offset-4 decoration-solid',
-      },
-      {
-        variant: 'foreground',
-        mode: 'link',
-        underlined: 'dashed',
-        className:
-          'font-medium text-foreground [&_svg:not([role=img]):not([class*=text-])]:opacity-60 underline underline-offset-4 decoration-dashed decoration-1',
-      },
-
-      // Ghost
-      {
-        variant: 'primary',
-        appearance: 'ghost',
-        className: 'bg-transparent text-primary/90 hover:bg-primary/5 data-[state=open]:bg-primary/5',
-      },
-      {
-        variant: 'destructive',
-        appearance: 'ghost',
-        className: 'bg-transparent text-destructive/90 hover:bg-destructive/5 data-[state=open]:bg-destructive/5',
-      },
-      {
-        variant: 'ghost',
-        mode: 'icon',
-        className: 'text-muted-foreground',
-      },
-
-      // Size
-      {
-        size: 'sm',
-        mode: 'icon',
-        className: 'w-7 h-7 p-0 [[&_svg:not([class*=size-])]:size-3.5',
-      },
-      {
-        size: 'md',
-        mode: 'icon',
-        className: 'w-8.5 h-8.5 p-0 [&_svg:not([class*=size-])]:size-4',
-      },
-      {
-        size: 'icon',
-        className: 'w-8.5 h-8.5 p-0 [&_svg:not([class*=size-])]:size-4',
-      },
-      {
-        size: 'lg',
-        mode: 'icon',
-        className: 'w-10 h-10 p-0 [&_svg:not([class*=size-])]:size-4',
-      },
-
-      // Input mode
-      {
-        mode: 'input',
-        placeholder: true,
-        variant: 'outline',
-        className: 'font-normal text-muted-foreground',
-      },
-      {
-        mode: 'input',
-        variant: 'outline',
-        size: 'sm',
-        className: 'gap-1.25',
-      },
-      {
-        mode: 'input',
-        variant: 'outline',
-        size: 'md',
-        className: 'gap-1.5',
-      },
-      {
-        mode: 'input',
-        variant: 'outline',
-        size: 'lg',
-        className: 'gap-1.5',
       },
     ],
     defaultVariants: {
@@ -376,7 +108,7 @@ function Button({
     selected?: boolean;
     asChild?: boolean;
   }) {
-  const Comp = asChild ? SlotPrimitive.Slot : 'button';
+  const Comp = asChild ? Slot : 'button';
   return (
     <Comp
       data-slot="button"
@@ -402,7 +134,7 @@ function Button({
 }
 
 interface ButtonArrowProps extends React.SVGProps<SVGSVGElement> {
-  icon?: LucideIcon; // Allows passing any Lucide icon
+  icon?: LucideIcon;
 }
 
 function ButtonArrow({ icon: Icon = ChevronDown, className, ...props }: ButtonArrowProps) {
