@@ -1,3 +1,4 @@
+import React from "react";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useMemo, useEffect, useCallback } from "react";
 import { Search, ChevronDown, Package, ArrowRight, Building2 } from "lucide-react";
@@ -351,7 +352,7 @@ export const TransformingProductsSection = () => {
                                       ? "bg-blue-100"
                                       : "bg-gray-100 group-hover:bg-blue-50"
                                   }`}>
-                                    <industry.icon className="w-5 h-5 text-gray-600" />
+                                    {React.createElement(industry.icon, { className: "w-5 h-5 text-gray-600" } as any)}
                                   </div>
                                   <div className="flex-1 min-w-0">
                                     <p className={`font-medium text-base truncate ${
